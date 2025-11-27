@@ -27,12 +27,12 @@
               class="editor text-secondary text-sub-title font-medium ltr:text-left rtl:text-right text-justify leading-main mb-[15px]"
             ></div>
 
-            <div class="taps">
+            <div class="taps @container">
               <!-- Tabs buttons -->
-              <div class="tap-item flex items-center md:gap-[15px] gap-x-1 mb-[20px]">
+              <div class="tap-item flex gap-y-3 flex-col @min-[380px]:flex-row  items-center md:gap-[15px] gap-x-1 mb-[20px]">
                 @for (tab of aboutData.tabs; track tab.position) {
                 <button
-                  class="rounded-[10px] cursor-pointer text-sub-title font-medium line-height-[35px] py-[9px] px-[28px] transition-colors"
+                  class="rounded-[10px] w-full @min-[380px]:w-auto cursor-pointer text-sub-title font-medium line-height-[35px] py-[9px] px-[28px] transition-colors"
                   [class]="{
                     'bg-main': activeTab.position === tab.position,
                     'text-white': activeTab.position === tab.position,
@@ -57,7 +57,7 @@
               <div class="bg-layer mx-auto lg:-translate-y-[15%]"></div>
             </div>
           </div>
-          <div class="bg-layer absolute bottom-0 translate-y-[10%] ms-auto w-[498px] h-[498px] z-0">
+          <div class="bg-layer absolute bottom-0 translate-y-[10%] ms-auto  w-[300px] md:w-[498px] aspect-square z-0">
             <img class="w-full h-full" src="/images/about-us/bg-layer.webp" alt="layer" />
           </div>
         </div>
