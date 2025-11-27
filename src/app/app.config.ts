@@ -15,13 +15,12 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
-    // provideBrowserGlobalErrorListeners(),s
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
       withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
       withViewTransitions(),
-      // withHashLocation()
     ),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(), withInterceptors([loadingInterceptor])),
