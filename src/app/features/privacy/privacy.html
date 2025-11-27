@@ -1,0 +1,19 @@
+<section>
+  @if(!isLoading()){
+  <app-banner
+    [path]="'navbar.privacy' | translate"
+    [image]="privacyPolicy.banner_image"
+  ></app-banner>
+  } @else {
+  <app-banner-skeleton />
+  }
+  <div class="container">
+    <h2 class="pb-6 pt-15 text-[#333] font-normal text-main-heading">
+      {{ 'navbar.privacy' | translate }}
+    </h2>
+    <div
+      class="editor text-[#474747] text-justify leading-9 font-normal text-sub-title"
+      [innerHTML]="privacyPolicy.privacy_policy | customSanitize"
+    ></div>
+  </div>
+</section>

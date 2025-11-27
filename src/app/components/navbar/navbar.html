@@ -1,0 +1,255 @@
+<nav
+  class="fixed top-0 right-0 left-0 z-50 px-2 lg:px-[80px] transition-all duration-300"
+  [class]="{
+  'bg-[#00000066]' :isScrolled(),
+  'shadow-md': isScrolled(),
+  'py-0': isScrolled(), 'py-5': !isScrolled (),
+
+  }"
+>
+  @if (!isMenuOpen) {
+  <div class="container flex items-center justify-between mx-auto max-w-full">
+    <a
+      [routerLink]="['/', currentLang$ | async]"
+      class="flex items-center"
+      [attr.aria-label]="'navbar.home_link' | translate"
+    >
+      <figure class="w-[98px] h-[98px]">
+        <img ngSrc="/images/logo.webp" width="98" height="98" priority alt="medeTrade Logo" />
+      </figure>
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      (click)="toggleMobileMenu()"
+      class="capitalize text-muted-rose cursor-pointer bg-main hover:bg-main-hover text-white focus:outline-none focus:ring-2 focus:ring-gray-200 rounded-lg text-sm p-2.5 2xl:hidden"
+      [attr.aria-expanded]="isMenuOpen"
+      [attr.aria-label]="'navbar.toggle_menu' | translate"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- Desktop Navigation - Always visible on desktop -->
+    <div class="hidden 2xl:block 2xl:w-auto">
+      <div class="flex flex-row font-medium">
+        <!-- Desktop Links -->
+        <ul class="flex flex-row xl:space-x-[40px] rtl:space-x mx-auto items-center" role="menubar">
+          <li class="desktop-item">
+            <a
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/', currentLang$ | async]"
+              class="cursor-pointer block py-2 text-white font-medium"
+            >
+              {{ 'navbar.home' | translate }}
+            </a>
+          </li>
+
+          @for (item of navbarItems; track item.id) {
+          <li class="desktop-item">
+            <a
+              routerLinkActive="active-link"
+              [routerLink]="['/', currentLang$ | async, item.link]"
+              class="cursor-pointer block py-2 text-white font-medium"
+            >
+              {{ item.name | translate }}
+            </a>
+          </li>
+          }
+          <!-- Language Selector -->
+          <li class="relative group cursor-pointer py-2" (clickOutside)="closeLanguageMenu()">
+            <button
+              id="langDropdownButton"
+              #langDropdownButton
+              class="cursor-pointer block py-3 px-2 text-white font-medium rounded-sm xl:p-0 focus:outline-none"
+              (click)="toggleMenu()"
+              [attr.aria-expanded]="showMenu"
+              [attr.aria-haspopup]="true"
+              [attr.aria-label]="'navbar.languages' | translate"
+            >
+              <!-- Arrow -->
+              <figure class="max-w-[25px] max-h-[25px] inline-block align-middle">
+                <img ngSrc="/images/navbar/arrow.webp" width="25" height="25" alt="Language" />
+              </figure>
+              <span class="inline-block align-middle pr-[5px] pl-[3px]">{{
+                'navbar.languages' | translate
+              }}</span>
+              <!-- Localization -->
+              <figure class="max-w-[25px] max-h-[25px] inline-block align-middle">
+                <img ngSrc="/images/navbar/localization.webp" width="25" height="25" alt="Toggle" />
+              </figure>
+            </button>
+            <!-- Dropdown -->
+            <!-- @if (showMenu) { -->
+            <div
+              id="langDropdown"
+              class="z-50 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-2xl shadow w-28 absolute top-[100%] right-0 overflow-hidden"
+              role="menu"
+            >
+              <ul class="text-sm text-gray-700 dark:text-gray-200">
+                <li role="menuitem">
+                  <a
+                    [routerLink]="getLanguageRoute('ar')"
+                    (click)="changeLang('ar')"
+                    (keydown)="handleDropdownKeydown($event, 'ar')"
+                    class="cursor-pointer flex items-center justify-center px-4 py-2 text-black hover:bg-gray-100 dark:hover:text-black text-category-size w-full"
+                    tabindex="0"
+                  >
+                    <!-- <figure class="max-w-[25px] max-h-[25px]">
+                      <img ngSrc="/images/navbar/lang.webp" width="25" height="25" alt="العربية" />
+                    </figure> -->
+                    <span> العربية </span>
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a
+                    [routerLink]="getLanguageRoute('en')"
+                    (click)="changeLang('en')"
+                    (keydown)="handleDropdownKeydown($event, 'en')"
+                    class="cursor-pointer flex items-center justify-center px-4 py-2 text-black hover:bg-gray-100 dark:hover:text-black text-category-size w-full"
+                    tabindex="0"
+                  >
+                    <!-- <figure class="max-w-[25px] max-h-[25px]">
+                      <img ngSrc="/images/navbar/lang.webp" width="25" height="25" alt="English" />
+                    </figure> -->
+                    <span> English </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- } -->
+          </li>
+          <li class="cursor-pointer block py-2">
+            <app-main-btn [baseBtn]="baseBtn"></app-main-btn>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  }
+  <!-- Off-Canvas Mobile Menu Overlay -->
+  <div
+    class="fixed inset-0 bg-black/50 z-50 transition-opacity duration-300"
+    [class.hidden]="!isMenuOpen"
+    [class.opacity-0]="!isMenuOpen"
+    [class.opacity-100]="isMenuOpen"
+    (click)="toggleMobileMenu()"
+  ></div>
+
+  <!-- Mobile menu wrapper with animation -->
+  @if (isMenuOpen) {
+
+  <div class="mobile-menu-container" [class.hidden]="!isMenuOpen">
+    <div
+      class="fixed top-0 bottom-0 bg-white z-50 shadow-lg overflow-y-auto w-[80%] max-w-[300px] transition-transform duration-300 ease-in-out"
+      [attr.dir]="isRtl ? 'rtl' : 'ltr'"
+      [class]="{
+        'right-0': isRtl,
+        'left-0': !isRtl,
+        'translate-x-full': isRtl,
+        '-translate-x-full': !isRtl
+      }"
+    >
+      <div class="p-4 flex justify-between items-center border-b border-gray-200">
+        <!-- Logo -->
+        <a [routerLink]="['/', currentLang$ | async]" (click)="onNavigationClick()">
+          <figure class="max-w-[56px] max-h-[40px]">
+            <img
+              src="/images/logo.webp"
+              width="56"
+              height="40"
+              loading="lazy"
+              alt="MedeTrade Logo"
+            />
+          </figure>
+        </a>
+        <button
+          (click)="toggleMobileMenu()"
+          class="cursor-pointer text-muted-rose hover:text-gray-700 focus:outline-none"
+          [attr.aria-label]="'navbar.close_menu' | translate"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Links -->
+      <ul class="py-4 px-6 space-y-4">
+        <li>
+          <a
+            [routerLink]="['/', currentLang$ | async]"
+            (click)="onNavigationClick()"
+            class="block py-2 text-black font-medium"
+          >
+            {{ 'navbar.home' | translate }}
+          </a>
+        </li>
+
+        @for (item of navbarItems; track item.id) {
+        <li>
+          <a
+            [routerLink]="['/', currentLang$ | async, item.link]"
+            (click)="onNavigationClick()"
+            class="block py-2 text-black font-medium"
+          >
+            {{ item.name | translate }}
+          </a>
+        </li>
+        }
+
+        <!-- Language Selector Mobile -->
+        <li class="border-t border-gray-200 pt-4 mt-4">
+          <div class="flex justify-around space-x-4 rtl:space-x-reverse">
+            <a
+              (click)="changeLang('ar')"
+              class="flex items-center cursor-pointer space-x-2 rtl:space-x-reverse py-2 px-3 rounded-lg hover:bg-gray-100"
+              [class.bg-gray-100]="(currentLang$ | async) === 'ar'"
+            >
+              <!-- <figure class="max-w-[25px] max-h-[25px]">
+                <img ngSrc="/images/navbar/lang.webp" width="25" height="25" alt="العربية" />
+              </figure> -->
+              <span>العربية</span>
+            </a>
+
+            <a
+              (click)="changeLang('en')"
+              class="flex items-center cursor-pointer space-x-2 rtl:space-x-reverse py-2 px-3 rounded-lg hover:bg-gray-100"
+              [class.bg-gray-100]="(currentLang$ | async) === 'en'"
+            >
+              <!-- <figure class="max-w-[25px] max-h-[25px]">
+                <img ngSrc="/images/navbar/lang.webp" width="25" height="25" alt="English" />
+              </figure> -->
+              <span>English</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  }
+</nav>

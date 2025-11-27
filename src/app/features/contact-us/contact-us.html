@@ -1,0 +1,65 @@
+<section>
+  @if(!isLoading()){
+  <app-banner
+    [path]="'navbar.contact' | translate"
+    [image]="contactUsData.banner_image"
+  ></app-banner>
+  } @else {
+  <app-banner-skeleton />
+  }
+
+  <!-- Contact Form -->
+  @if(!isLoading()) {
+  <app-contact-form [contactUsFormImage]="contactUsData.contact_image">
+    <div
+      class="contact-data py-[5px] px-7 mt-[calc(50px+11px)] border-2 border-[#00000000] rounded-[15px] shadow-md"
+    >
+      <ul class="space-y-3 text-secondary flex flex-col gap-y-2">
+        <li>
+          <a
+            [href]="
+              'https://api.whatsapp.com/send?phone=2' +
+              contactUsData.contact_information.phone_number
+            "
+            target="_blank"
+            class="flex items-center gap-2"
+          >
+            <span>{{ 'Phone-Number' | translate }} </span>:
+            <span> {{ contactUsData.contact_information.phone_number }} </span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            [href]="
+              'https://api.whatsapp.com/send?phone=2' +
+              contactUsData.contact_information.whatsapp_number
+            "
+            target="_blank"
+            class="flex items-center gap-2"
+          >
+            <span>{{ 'whats-number' | translate }} </span>:
+            <span> {{ contactUsData.contact_information.whatsapp_number }} </span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="flex items-center gap-2"
+            href="mailto:{{ contactUsData.contact_information.email }}"
+            target="_blank"
+          >
+            <span>{{ 'contact-us-form.email' | translate }}</span
+            >:
+            <span>
+              {{ contactUsData.contact_information.email }}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </app-contact-form>
+  } @else {
+  <app-contact-us-form-skeletonloader />
+  }
+</section>

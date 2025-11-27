@@ -1,0 +1,76 @@
+<section>
+  <!-- banner -->
+  @if(!isLoading()) {
+  <app-banner [path]="'partners-title' | translate" [image]="partnersData().banner" />
+
+  } @else {
+  <app-banner-skeleton />
+  }
+  <!-- Partners -->
+  @if(!isLoading() ){ @defer (on idle){
+  <div class="container pt-[60px]">
+    <div class="mb-8">
+      <nav class="flex flex-wrap justify-between gap-1">
+        @for(category of partnersData().data; track category.id; let i = $index) {
+        <button
+          type="button"
+          class="cursor-pointer capitalize px-6 py-3 text-sub-title font-medium transition-colors duration-200"
+          [class]="activeTab() === i ? 'text-main ' : 'text-black'"
+          (click)="setActiveTab(i)"
+        >
+          {{ category.title.toLowerCase() }}
+        </button>
+        }
+      </nav>
+    </div>
+
+    <!-- Tab Content with Carousel -->
+    @for(category of partnersData().data; track category.id; let i = $index) { @if(activeTab() ===
+    i) {
+    <div class="tab-content grid grid-cols-12 gap-x-[20px] gap-y-[32px]">
+      @for(partner of category.partners; track partner.id) {
+      <div class="col-span-12 md:col-span-4">
+        <div
+          class="flex flex-col justify-center items-center mx-2 p-6 rounded-2xl border bg-white h-full"
+        >
+          <figure class="mb-4">
+            <img
+              class="w-[146px] h-[105px] object-contain mx-auto"
+              [src]="partner.logo_url"
+              [alt]="partner.name + ' logo'"
+              loading="lazy"
+            />
+            <figcaption
+              [title]="partner.name"
+              class="text-black font-medium text-sub-title text-center line-clamp-1"
+            >
+              {{ partner.name }}
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      }
+    </div>
+    } }
+  </div>
+  } @placeholder {
+  <div class="animate-pulse mt-10">
+    <app-partners-skeleton [itemCount]="partnersData().data?.length || 4" />
+  </div>
+
+  } } @else {
+  <app-partners-skeleton [itemCount]="partnersData().data?.length || 4" />
+  } @if(!isLoading()) {
+  <!-- Contact Form -->
+  @defer (on idle){
+  <app-contact-form [contactUsFormImage]="partnersData().contactImage"></app-contact-form>
+  } @placeholder {
+  <div class="animate-pulse mt-10">
+    <app-contact-us-form-skeletonloader />
+  </div>
+  } } @else {
+  <div class="animate-pulse mt-10">
+    <app-contact-us-form-skeletonloader />
+  </div>
+  }
+</section>

@@ -1,0 +1,25 @@
+<section class="pb-[50px]">
+  <div class="container mb-5">
+    <!-- Title skeleton -->
+    <div class="text-center mb-6">
+      <div class="h-8 bg-gray-300 rounded w-64 mx-auto mb-4 animate-pulse"></div>
+    </div>
+
+    <!-- Description skeleton -->
+    <div class="text-center mb-8">
+      <div class="h-4 bg-gray-200 rounded w-96 mx-auto mb-2 animate-pulse"></div>
+      <div class="h-4 bg-gray-200 rounded w-80 mx-auto animate-pulse"></div>
+    </div>
+  </div>
+
+  <!-- Cards skeleton section -->
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4">
+      @for(i of [1,2,3,4]; track i) {
+      <div class="col-span-12 lg:col-span-3">
+        <app-card-skeleton />
+      </div>
+      }
+    </div>
+  </div>
+</section>

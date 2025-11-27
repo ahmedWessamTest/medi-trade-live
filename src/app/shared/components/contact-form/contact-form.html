@@ -1,0 +1,172 @@
+<section class="shadow-md pt-15 overflow-x-hidden pb-[80px]" aria-labelledby="contactFormTitle">
+  <div class="container">
+    <div class="grid grid-cols-12 gap-y-4 gap-x-6">
+      <div class="col-span-12 lg:col-span-6">
+        <h4 id="contactFormTitle" class="text-black text-main-heading font-medium mb-6">
+          {{ 'contact-us-form.title' | translate }}
+        </h4>
+
+        <p class="text-sub-title mb-7 text-secondary font-medium" id="contactFormDescription">
+          {{ 'contact-us-form.description' | translate }}
+        </p>
+
+        <form
+          [formGroup]="contactUsForm"
+          (ngSubmit)="onSubmit()"
+          class="space-y-6 mx-auto relative z-10"
+          aria-describedby="contactFormDescription"
+          aria-label="Contact us form"
+        >
+          <!-- name -->
+          <div class="mb-0">
+            <label for="nameInput" class="sr-only">
+              {{ 'contact-us-form.name' | translate }}
+            </label>
+            <input
+              id="nameInput"
+              [placeholder]="'contact-us-form.name' | translate"
+              type="text"
+              formControlName="name"
+              aria-label="{{ 'contact-us-form.name' | translate }}"
+              [attr.aria-invalid]="name?.invalid && name?.touched"
+              [attr.aria-describedby]="name?.invalid && name?.touched ? 'nameError' : null"
+              class="w-full rounded-[15px] border border-black px-4 py-3 text-black mb-[15px] outline-none text-sub-title font-medium"
+            />
+            @if(name?.touched && name?.errors){
+            <div id="nameError" role="alert" class="text-sm text-red-500 space-y-1 mb-[10px]">
+              @if(name?.errors?.['required']){
+              <p>{{ 'contact-us-form.validations.required.name' | translate }}</p>
+              } @if(name?.errors?.['minlength']){
+              <p>{{ 'contact-us-form.validations.min.name' | translate }}</p>
+              } @if(name?.errors?.['maxlength']){
+              <p>{{ 'contact-us-form.validations.max.name' | translate }}</p>
+              } @if(name?.errors?.['pattern']){
+              <p>{{ 'contact-us-form.validations.pattern.name' | translate }}</p>
+              }
+            </div>
+            }
+          </div>
+
+          <div class="group relative">
+            <!-- email -->
+            <div class="mb-0 relative z-10">
+              <label for="emailInput" class="sr-only">
+                {{ 'contact-us-form.email' | translate }}
+              </label>
+              <input
+                id="emailInput"
+                placeholder="{{ 'contact-us-form.email' | translate }}"
+                type="email"
+                formControlName="email"
+                aria-label="{{ 'contact-us-form.email' | translate }}"
+                [attr.aria-invalid]="email?.invalid && email?.touched"
+                [attr.aria-describedby]="email?.invalid && email?.touched ? 'emailError' : null"
+                class="w-full rounded-[15px] border border-black px-4 py-3 text-black mb-[15px] outline-none text-sub-title font-medium"
+              />
+              @if(email?.touched && email?.errors){
+              <div id="emailError" role="alert" class="text-sm text-red-500 space-y-1 mb-[10px]">
+                @if(email?.errors?.['required']){
+                <p>{{ 'contact-us-form.validations.required.email' | translate }}</p>
+                } @if(email?.errors?.['pattern']){
+                <p>{{ 'contact-us-form.validations.email.invalid' | translate }}</p>
+                }
+              </div>
+              }
+            </div>
+
+            <!-- phone -->
+            <div class="mb-0 relative z-10">
+              <label for="phoneInput" class="sr-only">
+                {{ 'contact-us-form.phone' | translate }}
+              </label>
+              <input
+                id="phoneInput"
+                placeholder="{{ 'contact-us-form.phone' | translate }}"
+                type="text"
+                formControlName="phone"
+                aria-label="{{ 'contact-us-form.phone' | translate }}"
+                [attr.aria-invalid]="phone?.invalid && phone?.touched"
+                [attr.aria-describedby]="phone?.invalid && phone?.touched ? 'phoneError' : null"
+                class="w-full rounded-[15px] border border-black px-4 py-3 text-black mb-[15px] outline-none text-sub-title font-medium"
+              />
+              @if(phone?.touched && phone?.errors){
+              <div id="phoneError" role="alert" class="text-sm text-red-500 space-y-1 mb-[10px]">
+                @if(phone?.errors?.['required']){
+                <p>{{ 'contact-us-form.validations.required.phone' | translate }}</p>
+                } @if(phone?.errors?.['minlength']){
+                <p>{{ 'contact-us-form.validations.min.phone' | translate }}</p>
+                } @if(phone?.errors?.['maxlength']){
+                <p>{{ 'contact-us-form.validations.max.phone' | translate }}</p>
+                } @if(phone?.errors?.['pattern']){
+                <p>{{ 'contact-us-form.validations.pattern.phone' | translate }}</p>
+                }
+              </div>
+              }
+            </div>
+@if(isMobile()) {
+  <div
+    class="layer-image w-[533px] opacity-10 h-[138px] absolute top-0 rtl:translate-x-[30%] ltr:translate-x-[-30%] z-0"
+  >
+    <img src="/images/map.gif" alt="layer-image" class="w-full h-full object-cover" />
+  </div>
+}
+          </div>
+
+          <!-- message -->
+          <div class="mb-0">
+            <label for="messageInput" class="sr-only">
+              {{ 'contact-us-form.message' | translate }}
+            </label>
+            <textarea
+              id="messageInput"
+              [placeholder]="'contact-us-form.message' | translate"
+              formControlName="message"
+              rows="5"
+              aria-label="{{ 'contact-us-form.message' | translate }}"
+              [attr.aria-invalid]="message?.invalid && message?.touched"
+              [attr.aria-describedby]="message?.invalid && message?.touched ? 'messageError' : null"
+              class="w-full rounded-[15px] border border-black px-4 py-3 text-black mb-[15px] outline-none text-sub-title font-medium"
+            ></textarea>
+            @if(message?.touched && message?.errors){
+            <div id="messageError" role="alert" class="text-sm text-red-500 space-y-1 mb-[10px]">
+              @if(message?.errors?.['required']){
+              <p>{{ 'contact-us-form.validations.required.message' | translate }}</p>
+              } @if(message?.errors?.['minlength']){
+              <p>{{ 'contact-us-form.validations.min.message' | translate }}</p>
+              } @if(message?.errors?.['maxlength']){
+              <p>{{ 'contact-us-form.validations.max.message' | translate }}</p>
+              } @if(message?.errors?.['pattern']){
+              <p>{{ 'contact-us-form.validations.pattern.message' | translate }}</p>
+              }
+            </div>
+            }
+          </div>
+
+          <!-- submit -->
+          <button
+            type="submit"
+            class="w-full cursor-pointer bg-main text-white rounded-[10px] py-[9px] text-sub-title block font-medium mb-[15px] outline-none"
+            aria-label="{{ 'contact-us-form.submit' | translate }}"
+          >
+            {{ 'contact-us-form.submit' | translate }}
+          </button>
+        </form>
+      </div>
+
+      <div class="col-span-12 lg:col-span-6">
+        @if(contactUsFormImage) {
+        <figure class="w-full relative rounded-2xl">
+          <img
+            loading="eager"
+            class="w-full h-full rounded-2xl overflow-hidden"
+            [src]="contactUsFormImage"
+            alt="Contact Us Illustration"
+          />
+          <div class="shape-image hidden 2xl:block absolute end-[-34px]"></div>
+        </figure>
+        }
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+<section class="about-us pt-[50px]">
+  <div class="container">
+    <h2 class="text-main text-main-heading text-center md:text-[45px] font-medium mb-[35px]">
+      <span class="text-black">
+        {{ 'AboutMedi.noneColor' | translate }}
+      </span>
+      {{ 'AboutMedi.colorTitle' | translate }}
+    </h2>
+    <p class="text-secondary text-sub-title font-normal line-height-[45px] mb-[48px]">
+      {{ aboutData.title }}
+    </p>
+
+    <div class="about-content">
+      <div class="grid w-full gap-[30px] grid-cols-12">
+        <!-- Left column -->
+        <div class="col-span-12 lg:col-span-5">
+          <figure class="w-full h-full">
+            <img loading="lazy" [src]="aboutData.image_url" alt="about-image" class="w-full" />
+          </figure>
+        </div>
+
+        <!-- Right column -->
+        <div class="col-span-12 lg:col-span-7 relative">
+          <div class="content relative z-10">
+            <div
+              [innerHTML]="aboutData.body | customSanitize"
+              class="editor text-secondary text-sub-title font-medium ltr:text-left rtl:text-right text-justify leading-main mb-[15px]"
+            ></div>
+
+            <div class="taps">
+              <!-- Tabs buttons -->
+              <div class="tap-item flex items-center md:gap-[15px] gap-x-1 mb-[20px]">
+                @for (tab of aboutData.tabs; track tab.position) {
+                <button
+                  class="rounded-[10px] cursor-pointer text-sub-title font-medium line-height-[35px] py-[9px] px-[28px] transition-colors"
+                  [class]="{
+                    'bg-main': activeTab.position === tab.position,
+                    'text-white': activeTab.position === tab.position,
+                    'bg-gray-200': activeTab.position !== tab.position,
+                    'text-black': activeTab.position !== tab.position,
+                  }"
+                  (click)="selectTab(tab.position)"
+                >
+                  {{ tab.title }}
+                </button>
+                }
+              </div>
+
+              <!-- Active tab content -->
+              <div class="tap-content">
+                <div
+                  class="editor text-secondary text-sub-title font-medium leading-main mb-[15px]"
+                  [innerHTML]="activeTab.body | customSanitize"
+                ></div>
+              </div>
+
+              <div class="bg-layer mx-auto lg:-translate-y-[15%]"></div>
+            </div>
+          </div>
+          <div class="bg-layer absolute bottom-0 translate-y-[10%] ms-auto w-[498px] h-[498px] z-0">
+            <img class="w-full h-full" src="/images/about-us/bg-layer.webp" alt="layer" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

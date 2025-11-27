@@ -1,0 +1,102 @@
+<nav class="fixed top-0 right-0 left-0 z-50 pt-[22px] pb-6">
+  <div class="container">
+    <div class="flex items-center justify-between">
+      <!-- Logo with actual home link -->
+      <a [routerLink]="['/', currentLang$ | async, '']" class="flex items-center" aria-label="Home">
+        <div
+          class="w-[56px] h-[40px] bg-gray-200 animate-pulse rounded flex items-center justify-center"
+        >
+          <span class="sr-only">MedeTrade Logo</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Skeleton with actual links -->
+      <div class="hidden xl:flex flex-grow justify-center space-x-8">
+        <a [routerLink]="['/', currentLang$ | async, '']" class="block py-2 px-3">
+          <div class="w-20 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">Home</span>
+          </div>
+        </a>
+        <a [routerLink]="['/', currentLang$ | async, 'about-us']" class="block py-2 px-3">
+          <div class="w-24 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">About Us</span>
+          </div>
+        </a>
+        <a [routerLink]="['/', currentLang$ | async, 'partners']" class="block py-2 px-3">
+          <div class="w-16 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">Partners</span>
+          </div>
+        </a>
+        <a [routerLink]="['/', currentLang$ | async, 'sectors']" class="block py-2 px-3">
+          <div class="w-28 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">Sectors</span>
+          </div>
+        </a>
+
+        <a [routerLink]="['/', currentLang$ | async, 'blogs']" class="block py-2 px-3">
+          <div class="w-16 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">Articles</span>
+          </div>
+        </a>
+
+        <a [routerLink]="['/', currentLang$ | async, 'media']" class="block py-2 px-3">
+          <div class="w-28 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">Media</span>
+          </div>
+        </a>
+
+        <a [routerLink]="['/', currentLang$ | async, 'contact-us']" class="block py-2 px-3">
+          <div class="w-24 h-6 bg-gray-200 animate-pulse rounded flex items-center justify-center">
+            <span class="sr-only">Contact Us</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right Actions Skeleton with actual links -->
+      <div class="hidden xl:flex items-center space-x-4">
+        <a
+          [routerLink]="['/', currentLang$ | async, 'contact-us']"
+          aria-label="Contact Us"
+          class="block py-2 px-3"
+        >
+          <div
+            class="w-[25px] h-[25px] bg-gray-200 animate-pulse rounded-full flex items-center justify-center"
+          >
+            <span class="sr-only">Contact Us</span>
+          </div>
+        </a>
+        <a
+          [routerLink]="['/', currentLang$ | async, 'about-us']"
+          aria-label="About Us"
+          class="block py-2 px-3"
+        >
+          <div
+            class="w-[25px] h-[25px] bg-gray-200 animate-pulse rounded-full flex items-center justify-center"
+          >
+            <span class="sr-only">About Us</span>
+          </div>
+        </a>
+        <a
+          [routerLink]="['/', currentLang$ | async, 'sectors']"
+          aria-label="Sectors"
+          class="block py-2 px-3"
+        >
+          <div
+            class="w-[25px] h-[25px] bg-gray-200 animate-pulse rounded-full flex items-center justify-center"
+          >
+            <span class="sr-only">Sectors</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Toggle Skeleton -->
+      <button class="xl:hidden p-2" aria-label="Toggle mobile menu">
+        <div
+          class="w-[30px] h-[30px] bg-gray-200 animate-pulse rounded flex items-center justify-center"
+        >
+          <span class="sr-only">Menu</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</nav>

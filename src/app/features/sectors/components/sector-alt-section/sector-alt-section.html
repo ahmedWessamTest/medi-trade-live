@@ -1,0 +1,165 @@
+<section class="pt-[60px] pb-[74px]">
+  <div class="container">
+    <div class="grid grid-cols-1 relative lg:grid-cols-2 gap-5 all-images-group p-8 md:p-8">
+      <div class="bg-[#0049AF] absolute w-full h-[70%] z-0 rounded-2xl"></div>
+      <!-- Right Section -->
+      <div class="flex flex-col justify-between z-10">
+        <div class="content">
+          <h2 class="text-main-heading font-semibold pb-[18px] text-white">
+            {{ 'sectors-title' | translate }}
+          </h2>
+          @if(sectorsData.sectors_body) {
+          <div
+            class="editor text-white text-sub-title text-justify pb-3 leading-8 max-h-[130px] overflow-y-auto px-1"
+            [innerHTML]="sectorsData.sectors_body"
+          ></div>
+          } @else {
+          <div class="space-y-3 pb-3">
+            <div class="h-4 bg-gray-400 rounded w-full animate-pulse"></div>
+            <div class="h-4 bg-gray-400 rounded w-5/6 animate-pulse"></div>
+            <div class="h-4 bg-gray-400 rounded w-4/6 animate-pulse"></div>
+            <div class="h-4 bg-gray-400 rounded w-3/6 animate-pulse"></div>
+            <div class="h-4 bg-gray-400 rounded w-2/6 animate-pulse"></div>
+          </div>
+          }
+        </div>
+
+        <!-- Bottom Two Images -->
+        <div class="flex gap-4">
+          <!-- Image 3 -->
+          @if(sectorsData.sectors && sectorsData.sectors[3]) {
+
+          <a
+            [routerLink]="[sectorsData.sectors[3].slug]"
+            class="relative w-1/2 overflow-hidden rounded-lg"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[3].image_url"
+                [alt]="sectorsData.sectors[3].image_alt"
+                loading="lazy"
+                class="w-full h-[268px]"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[3].title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+          } @else {
+          <app-image-skeleton class="w-1/2" height="268px" />
+          }
+
+          <!-- Image 4 -->
+          @if(sectorsData.sectors && sectorsData.sectors[4]) {
+
+          <a
+            [routerLink]="[sectorsData.sectors[4].slug]"
+            class="relative w-1/2 overflow-hidden rounded-lg"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[4].image_url"
+                [alt]="sectorsData.sectors[4].image_alt"
+                loading="lazy"
+                class="w-full h-[268px]"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[4].title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+          } @else {
+          <app-image-skeleton class="w-1/2" height="268px" />
+          }
+        </div>
+      </div>
+      <!-- Left Section -->
+      <div class="relative">
+        <!-- Overlapping Images -->
+        <div class="relative flex justify-center gap-x-[11px] z-10">
+          <!-- Image 0 -->
+          @if(sectorsData.sectors && sectorsData.sectors[0]) {
+
+          <a
+            [routerLink]="[sectorsData.sectors[0].slug]"
+            class="relative w-1/2 overflow-hidden rounded-lg"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[0].image_url"
+                [alt]="sectorsData.sectors[0].image_alt"
+                loading="lazy"
+                class="w-full h-[268px]"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[0].title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+          } @else {
+          <app-image-skeleton class="w-1/2" height="268px" />
+          }
+
+          <!-- Image 1 -->
+          @if(sectorsData.sectors && sectorsData.sectors[1]) {
+          <a
+            [routerLink]="[sectorsData.sectors[1].slug]"
+            class="relative w-1/2 overflow-hidden rounded-lg"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[1].image_url"
+                [alt]="sectorsData.sectors[1].image_alt"
+                loading="lazy"
+                class="w-full h-[268px]"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[1].title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+          } @else {
+          <app-image-skeleton class="w-1/2" height="268px" />
+          }
+        </div>
+
+        <!-- Full-width Image -->
+        @if(sectorsData.sectors && sectorsData.sectors[2]) {
+
+        <a [routerLink]="[sectorsData.sectors[2].slug]">
+          <figure class="relative w-full overflow-hidden rounded-lg mt-[20px] z-10">
+            <img
+              [src]="sectorsData.sectors[2].image_url"
+              [alt]="sectorsData.sectors[2].image_alt"
+              loading="lazy"
+              class="w-full h-[268px]"
+            />
+            <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+              <p class="text-white font-bold">
+                {{ sectorsData.sectors[2].title }}
+              </p>
+            </div>
+          </figure>
+        </a>
+
+        } @else {
+        <div class="relative w-full overflow-hidden rounded-lg mt-[20px] z-10">
+          <app-image-skeleton class="w-full" height="268px" />
+        </div>
+        }
+
+        <div
+          class="bg-white top-0 end-0 absolute w-[calc(60%+34px)] border-[3px] border-[#0049AF] h-[calc(100%+34px)] translate-y-[-17px] rtl:translate-x-[-17px] ltr:translate-x-[17px] z-0 rounded-2xl"
+        ></div>
+      </div>
+    </div>
+  </div>
+</section>

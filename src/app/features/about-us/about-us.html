@@ -1,0 +1,60 @@
+<!-- banner -->
+@if(!isLoading()) {
+<app-banner
+  [path]="'AboutMedi.aboutData.main_title' | translate"
+  [image]="aboutData.banner"
+></app-banner>
+} @else {
+<app-banner-skeleton />
+}
+<section class="shadow-md pb-15">
+  @if (!isLoading()) {
+  <app-above-hold [aboutData]="aboutData"></app-above-hold>
+
+  } @else {
+  <app-above-hold-skeleton />
+  }
+  <!-- ISO -->
+  @if(!isLoading()) {
+  <app-iso [isoData]="aboutData.iso" />
+  } @else {
+  <app-iso-skeleton-loader />
+  }
+  <!-- Why Us -->
+  @if(!isLoading()) {
+  <app-why-us [whyData]="aboutData.why" [whyReasons]="aboutData.whyReasons" />
+  } @else {
+  <app-why-us-skeleton-loader />
+  }
+
+  <!-- Tabs -->
+  @if(!isLoading()) {
+  <div class="container">
+    <div class="taps">
+      <!-- Tabs buttons -->
+      <div class="tap-item flex justify-evenly items-center gap-[15px] mb-[20px]">
+        @for (tab of aboutData.tabs; track tab.position) {
+        <button
+          class="rounded-[10px] cursor-pointer text-sub-title font-medium transition-colors"
+          [class]="{
+            'text-main': activeTab.position === tab.position,
+            'text-black': activeTab.position !== tab.position,
+          }"
+          (click)="selectTab(tab.position)"
+        >
+          {{ tab.title }}
+        </button>
+        }
+      </div>
+
+      <!-- Active tab content -->
+      <div class="tap-content">
+        <div
+          class="editor text-secondary text-sub-title font-medium leading-main mb-[15px]"
+          [innerHTML]="activeTab.body | customSanitize"
+        ></div>
+      </div>
+    </div>
+  </div>
+  }
+</section>

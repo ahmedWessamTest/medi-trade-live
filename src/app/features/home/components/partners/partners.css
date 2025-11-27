@@ -1,0 +1,109 @@
+/* Partners Section Styling */
+.partner-card {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Owl Carousel Custom Styling */
+::ng-deep .owl-carousel .owl-nav {
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 1360px) {
+  ::ng-deep .owl-carousel .owl-nav {
+    display: none !important;
+  }
+}
+
+::ng-deep .owl-carousel .owl-dots {
+  display: none !important;
+}
+@media screen and (max-width: 1360px) {
+  ::ng-deep .owl-carousel .owl-dots {
+    display: block !important;
+  }
+}
+::ng-deep .owl-carousel .owl-nav .owl-next,
+::ng-deep .owl-carousel .owl-nav .owl-prev {
+  border-radius: 50%;
+  background: #00000099 !important;
+  color: white !important;
+  border: none;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+}
+/* LTR (default) */
+.rtl-carousel ::ng-deep .owl-carousel .owl-nav .owl-next {
+  transform: translateX(-100%);
+}
+.rtl-carousel ::ng-deep .owl-carousel .owl-nav .owl-prev {
+  transform: translateX(100%);
+}
+
+.rtl-carousel ::ng-deep .owl-carousel .owl-nav .owl-prev i,
+.rtl-carousel ::ng-deep .owl-carousel .owl-nav .owl-next i {
+  transform: rotate(0deg);
+}
+
+/* RTL */
+.ltr-carousel ::ng-deep .owl-carousel .owl-nav .owl-next {
+  transform: translateX(100%);
+}
+.ltr-carousel ::ng-deep .owl-carousel .owl-nav .owl-prev {
+  transform: translateX(-100%);
+}
+.ltr-carousel ::ng-deep .owl-carousel .owl-nav .owl-prev i,
+.ltr-carousel ::ng-deep .owl-carousel .owl-nav .owl-next i {
+  transform: rotate(180deg);
+}
+
+::ng-deep .owl-carousel .owl-dots {
+  text-align: center;
+  margin-top: 15px;
+}
+
+::ng-deep .owl-carousel .owl-dots .owl-dot {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+::ng-deep .owl-carousel .owl-dots .owl-dot.active span,
+::ng-deep .owl-carousel .owl-dots .owl-dot:hover span {
+  background: #3b82f6;
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .partner-card {
+    min-height: 180px;
+    padding: 1rem;
+  }
+}
+
+/* Tab Styling */
+.tab-content {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

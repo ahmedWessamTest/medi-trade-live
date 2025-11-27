@@ -1,0 +1,30 @@
+.all-images-group .overlay {
+  opacity: 0;
+  pointer-events: none; /* prevents interacting with overlays when hidden */
+  transition: opacity 0.45s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.all-images-group:has(a:hover) .overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.all-images-group .overlay p {
+  opacity: 0;
+  transition: opacity 0.45s ease 0.05s;
+}
+
+.all-images-group:has(a:hover) .overlay p {
+  opacity: 1;
+}
+
+.all-images-group:has(a:hover) img {
+  transition: transform 0.45s ease;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}

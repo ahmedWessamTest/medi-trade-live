@@ -1,0 +1,7 @@
+.about-us ::ng-deep ul {
+  list-style: disc !important; /* bullets */
+}
+
+.about-us ::ng-deep ol {
+  list-style: decimal !important; /* numbers */
+}

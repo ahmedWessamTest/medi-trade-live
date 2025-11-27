@@ -1,0 +1,115 @@
+<section>
+  @if(!isLoading()){
+  <app-banner [path]="'navbar.media' | translate" [image]="media.banner_image"></app-banner>
+  } @else {
+  <app-banner-skeleton />
+  }
+
+  <div class="media-cotnainer flex flex-col gap-y-15 mb-[104px]">
+    <!-- Images -->
+    @if(!isLoading()){ @defer (on timer(200)) {
+
+    <div class="media pt-[calc(60px+115px)]">
+      <div class="container">
+        <div class="photos relative">
+          <div
+            class="layer absolute -top-[115px] left-0 w-full h-[227px] bg-[#E0E0E0] border border-[#00000000] rounded-2xl overflow-hidden"
+          >
+            <p class="text-black text-[35px] capitalize font-normal leading-11 p-[35px]">
+              {{ 'photos' | translate }}
+            </p>
+          </div>
+          <div
+            [class.ltr-carousel]="currentLang() === 'en'"
+            [class.rtl-carousel]="currentLang() === 'ar'"
+            class="tab-content px-5 md:px-0 lg:px-[36px] overflow-hidden"
+          >
+            <owl-carousel-o [options]="carouselOptionsImages()">
+              @for(photo of media.images; track photo.id) {
+              <ng-template carouselSlide>
+                <figure class="w-full h-[322px] rounded-[15px] overflow-hidden">
+                  <img
+                    class="w-full h-full object-cover"
+                    [src]="photo.image_url"
+                    [alt]="'navbar.media' | translate"
+                    loading="lazy"
+                  />
+                </figure>
+              </ng-template>
+              }
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+    } @placeholder {
+    <div class="pt-10">
+      <app-skeleton-loader-media [itemCount]="4" [haveTransform]="false" />
+    </div>
+    } } @else {
+    <div class="pt-10">
+      <app-skeleton-loader-media [itemCount]="4" [haveTransform]="false" />
+    </div>
+    }
+    <!-- Videos -->
+    @if(!isLoading()){ @defer (on timer(400)) {
+
+    <div class="media pt-[calc(60px+115px)]">
+      <div class="container">
+        <div class="videos relative">
+          <div
+            class="layer absolute -top-[115px] left-0 w-full h-[227px] bg-[#E0E0E0] border border-[#00000000] rounded-2xl"
+          >
+            <p class="text-black capitalize text-[35px] font-normal leading-11 p-[35px]">
+              {{ 'videos' | translate }}
+            </p>
+          </div>
+          <div
+            [class.ltr-carousel]="currentLang() === 'en'"
+            [class.rtl-carousel]="currentLang() === 'ar'"
+            class="px-5 md:px-0 lg:px-[36px] overflow-hidden"
+          >
+            <owl-carousel-o [options]="carouselOptionsVideos()">
+              @for(video of media.videos; track video.id) {
+              <ng-template carouselSlide>
+                <a
+                  [href]="video.video_url"
+                  target="_blank"
+                  class="relative w-full h-[322px] block video"
+                >
+                  <figure class="w-full h-full rounded-[15px] overflow-hidden">
+                    <img
+                      class="w-full h-full object-cover"
+                      [src]="video.thumb_url"
+                      [alt]="'navbar.media' | translate"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <div
+                    class="icons absolute top-0 left-0 w-full h-full flex items-center justify-center"
+                  >
+                    <i class="fa-solid fa-circle-play text-white text-[52px]"></i>
+                  </div>
+                </a>
+              </ng-template>
+              }
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+    }@placeholder {
+    <app-skeleton-loader-media [itemCount]="4" [haveTransform]="false" />
+
+    } } @else {
+    <app-skeleton-loader-media [itemCount]="4" [haveTransform]="false" />
+    }
+  </div>
+
+  <!-- Contact Form -->
+  @if(!isLoading()) {
+  <app-contact-form [contactUsFormImage]="media.contact_image"> </app-contact-form>
+  } @else {
+  <app-contact-us-form-skeletonloader />
+  }
+</section>

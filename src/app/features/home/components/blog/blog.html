@@ -1,0 +1,40 @@
+<section>
+  <ng-content></ng-content>
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4">
+      @for (article of blogData; track article.slug;) {
+      <div class="col-span-12 lg:col-span-4">
+        <div class="blog bg-[#F2F2F2] rounded-2xl p-4">
+          <a [routerLink]="['/', currentLang$ | async, 'blogs', article.slug]">
+            <figure class="h-[304px] rounded-[15px] overflow-hidden">
+              <img
+                loading="lazy"
+                [src]="article.image_url"
+                alt="article-image"
+                class="w-full h-full transition-transform origin-center duration-500 ease-in-out hover:scale-150 rounded-[15px] mb-[10px] overflow-hidden"
+              />
+            </figure>
+            <figcaption
+              [title]="article.title"
+              class="text-black font-semibold text-sub-title leading-[45px] line-clamp-1"
+            >
+              {{ article.title | translate }}
+            </figcaption>
+          </a>
+
+          <div
+            [innerHTML]="article.body | customSanitize"
+            class="text-secondary text-[16px] mb-[10px] line-clamp-2 font-medium leading-[26px]"
+          ></div>
+          <a
+            [routerLink]="['/', currentLang$ | async, 'blogs', article.slug]"
+            class="text-main underline text-[16px] block text-end font-medium leading-[26px]"
+          >
+            {{ 'blog.know_more' | translate }}
+          </a>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

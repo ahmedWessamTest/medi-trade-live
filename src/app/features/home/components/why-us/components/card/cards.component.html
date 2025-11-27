@@ -1,0 +1,15 @@
+<section>
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4">
+      @for(card of whyData; track $index) {
+      <div class="col-span-12 lg:col-span-3">
+        <app-card [card]="card" />
+      </div>
+      } @empty { @for(i of [1,2,3,4]; track i) {
+      <div class="col-span-12 lg:col-span-3">
+        <app-card-skeleton />
+      </div>
+      } }
+    </div>
+  </div>
+</section>

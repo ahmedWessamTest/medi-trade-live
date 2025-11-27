@@ -1,0 +1,33 @@
+<section class="mb-[60px]">
+  <h4 class="mb-[35px] relative text-main-heading w-fit mx-auto font-bold text-center">
+    {{ 'media.title' | translate }}
+    <span class="absolute top-[-14px] -left-[24px] translate-x-[-100%]">
+      <img src="/images/bg-overlay.webp" alt="media-bg" class="w-full h-full" />
+    </span>
+  </h4>
+  @if (mediaData) {
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4">
+      @for (media of mediaData; track media.position;) {
+      <div class="col-span-12 lg:col-span-3 relative">
+        <figure
+          [class]="{
+          'lg:translate-y-[37px]': media.position % 2 === 0,
+          'mb-[35px]': media.position % 2 !== 0,
+
+        }"
+          class="w-full h-[270px] rounded-[15px] overflow-hidden"
+        >
+          <img loading="lazy" [src]="media.image_path" alt="media-image" class="w-full h-full" />
+        </figure>
+      </div>
+      }
+    </div>
+    <div class="btn flex justify-center mt-[55px]">
+      <app-main-btn [baseBtn]="baseBtn" />
+    </div>
+  </div>
+  } @else {
+  <app-skeleton-loader-media [itemCount]="4" [haveTransform]="true" />
+  }
+</section>

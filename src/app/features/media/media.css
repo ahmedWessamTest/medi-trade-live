@@ -1,0 +1,13 @@
+::ng-deep .owl-dots .owl-dot span {
+  background-color: #d9d9d9 !important;
+}
+::ng-deep .owl-dots .owl-dot.active span {
+  background-color: var(--color-main) !important;
+}
+a.video .icons i {
+  transition: all 0.3s ease;
+}
+a.video:hover .icons i {
+  scale: 1.2;
+  color: var(--color-main) !important;
+}

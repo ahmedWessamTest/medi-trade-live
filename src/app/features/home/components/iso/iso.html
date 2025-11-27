@@ -1,0 +1,44 @@
+@if (isoData) {
+<section class="py-15">
+  <div class="container">
+    <div class="iso grid w-full xl:gap-x-[86px] grid-cols-12">
+      <div class="col-span-12 lg:col-span-9 mb-[23px]">
+        <p class="text-black text-main-sub-heading font-semibold leading-[30px] mb-[32px]">
+          {{ isoData.title }}
+        </p>
+        <div
+          [innerHTML]="isoData.description | customSanitize"
+          class="editor text-black text-sub-title font-medium leading-[50px] mb-6"
+        ></div>
+      </div>
+      <div class="col-span-12 lg:col-span-3">
+        <figure>
+          <img
+            loading="lazy"
+            class="w-full cursor-pointer"
+            [src]="isoData.image"
+            alt="iso"
+            (click)="openModel()"
+          />
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+} @else {
+<app-iso-skeleton-loader />
+} @if (isLightboxOpen) {
+<div
+  #modalElement
+  class="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+  (click)="closeModel()"
+>
+  <img
+    [src]="isoData.image"
+    alt="Full view"
+    class="max-h-[90vh] max-w-[90vw] rounded-lg shadow-lg cursor-pointer"
+    (click)="$event.stopPropagation()"
+  />
+</div>
+
+}

@@ -1,0 +1,22 @@
+li.desktop-item a {
+  font-weight: 400;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+li.desktop-item a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-alt-btn);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+}
+
+li.desktop-item a:hover::after,
+li.desktop-item a.active-link::after {
+  width: 80%;
+}

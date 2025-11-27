@@ -1,0 +1,7 @@
+.tap-content ::ng-deep ul {
+  list-style: disc !important; /* bullets */
+}
+
+.tap-content ::ng-deep ol {
+  list-style: decimal !important; /* numbers */
+}

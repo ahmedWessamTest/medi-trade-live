@@ -1,0 +1,16 @@
+<section class="pb-[50px]">
+  <div class="container mb-5">
+    <h5 class="text-main mb-6 mt-[56px] font-medium text-main-heading text-center">
+      <span class="text-black">
+        {{ 'WhyUs.why' | translate }}
+      </span>
+      {{ 'WhyUs.title' | translate }}
+    </h5>
+
+    <div
+      [innerHTML]="whyData | customSanitize"
+      class="editor text-secondary text-center text-sub-title"
+    ></div>
+  </div>
+  <app-cards [whyData]="whyReasons" />
+</section>

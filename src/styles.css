@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+@theme {
+  --color-main: #1976ac;
+  --color-secondary: #464646;
+  --color-alt-btn: #d9d9d9;
+  --text-main-title: calc(2.1875rem * 1); /* 35px */
+  --text-main-heading: calc(2.81rem * 1); /* 45px */
+  --text-main-sub-heading: calc(2rem * 1); /* 32px */
+  --text-sub-title: 1.125rem; /* 18px */
+  --leading-main: 35px;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-transform: capitalize;
+  }
+
+  :root {
+    font-size: 16px;
+  }
+
+  @media (max-width: 499px) {
+    :root {
+      font-size: 13px;
+    }
+  }
+}
+
+@layer utilities {
+  @media (min-width: 1278px) and (max-width: 1440px) {
+    .container {
+      width: 95%;
+    }
+  }
+
+  @media (max-width: 660px) {
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  @media (min-width: 1530px) {
+    .container {
+      width: 88rem !important;
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+}
+
+/* Prevent body scroll when mobile menu is open */
+.scroll-lock {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.editor ul {
+  list-style: disc !important;
+  padding: 0 30px;
+}
+.editor ol {
+  list-style: decimal !important;
+  padding: 0 30px;
+}

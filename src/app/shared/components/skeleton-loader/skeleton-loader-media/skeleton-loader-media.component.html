@@ -1,0 +1,21 @@
+<section class="container">
+  <!-- Skeleton Grid -->
+  <div class="grid grid-cols-12 gap-4">
+    @for (item of skeletonItems; track item;) {
+    <div
+      [class]="{
+        'lg:translate-y-[37px]': item % 2 === 0 && haveTransform,
+        'lg:-translate-y-[37px]': item % 2 !== 0 && haveTransform
+      }"
+      class="col-span-12 lg:col-span-3 relative"
+    >
+      <figure class="w-full h-[270px] rounded-[15px] overflow-hidden bg-gray-200 animate-pulse">
+        <!-- Skeleton Image Placeholder -->
+        <div
+          class="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer"
+        ></div>
+      </figure>
+    </div>
+    }
+  </div>
+</section>

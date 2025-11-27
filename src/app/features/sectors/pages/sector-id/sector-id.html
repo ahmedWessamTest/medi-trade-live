@@ -1,0 +1,211 @@
+<section>
+  <!-- banner -->
+  @if(!isLoading()) {
+  <app-banner [path]="customTranslate('sectors-title')" [image]="sectorSlug.banner_url" />
+  } @else {
+  <app-banner-skeleton />
+  }
+
+  <div class="container pt-15">
+    <!-- image banner -->
+    @if (!isLoading() && sectorSlug.image_url) {
+    <div class="image-banner relative pt-[40px]">
+      <figure class="w-full h-full z-1 px-0 md:px-9">
+        <img
+          class="w-full aspect-[3/1] object-cover"
+          loading="eager"
+          [src]="sectorSlug.image_url"
+          [alt]="sectorSlug.image_alt"
+        />
+      </figure>
+      <div
+        class="overlay-bg hidden md:block absolute top-0 w-full h-[274px] bg-[#0049AF] -z-1 border border-[#00000000] rounded-2xl"
+      ></div>
+      <div class="overlay-image absolute top-[50px] left-[23px] z-2 px-0 md:px-9">
+        <figure class="w-full h-full animate-spin">
+          <img
+            loading="eager"
+            src="/images/bg-overlay.webp"
+            [alt]="sectorSlug.image_alt"
+            class="w-full h-full"
+          />
+        </figure>
+      </div>
+    </div>
+    } @else {
+    <app-image-banner-skeleton></app-image-banner-skeleton>
+    }
+
+    <!-- content -->
+    @if (!isLoading()) { @if(slug !== 'export' && slug !== 'التصدير' ) {
+
+    <div class="content p-2 lg:px-15 lg:pt-7 pb-14">
+      <h2 class="text-black text-2xl leading-9 font-bold pb-4">{{ sectorSlug.title }}</h2>
+      <div
+        scrollHighlight
+        [innerHTML]="sectorSlug.content"
+        class="text-container editor text-secondary font-medium leading-7 text-justify ltr:pr-4 rtl:pl-4 ltr:lg:pr-9 rtl:lg:pl-9 max-h-[428px] overflow-y-auto"
+      ></div>
+    </div>
+    } @else {
+    <div class="content p-2 lg:px-15 lg:pt-7 pb-14">
+      <h2 class="text-black text-2xl leading-9 font-bold pb-4">{{ sectorSlug.title }}</h2>
+      <div
+        [innerHTML]="sectorSlug.content | customSanitize"
+        class="editor text-secondary font-medium leading-7 text-justify ltr:pr-9 rtl:pl-9"
+      ></div>
+    </div>
+    } } @else {
+    <div class="content px-15 pt-7">
+      <div class="w-3/4 h-8 bg-gray-300 animate-pulse rounded mb-4"></div>
+      <div class="space-y-3">
+        <div class="w-full h-4 bg-gray-200 animate-pulse rounded"></div>
+        <div class="w-full h-4 bg-gray-200 animate-pulse rounded"></div>
+        <div class="w-5/6 h-4 bg-gray-200 animate-pulse rounded"></div>
+        <div class="w-full h-4 bg-gray-200 animate-pulse rounded"></div>
+        <div class="w-4/5 h-4 bg-gray-200 animate-pulse rounded"></div>
+        <div class="w-full h-4 bg-gray-200 animate-pulse rounded"></div>
+        <div class="w-3/4 h-4 bg-gray-200 animate-pulse rounded"></div>
+      </div>
+    </div>
+    }
+  </div>
+  @if (slug !== 'export' && slug !== 'التصدير' ) {
+  <!-- types -->
+  @if (!isLoading()) {
+  <div class="types pb-[73px] relative">
+    <div class="container">
+      <h3 class="text-black text-2xl font-bold leading-9 pb-9 pt-3 relative z-10">
+        {{ 'types-title' | translate }}
+      </h3>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 relative z-10"
+      >
+        @for (type of sectorSlug.types; track $index) {
+        <div class="card">
+          <figure
+            class="cursor-pointer w-full h-[209px] rounded-2xl overflow-hidden"
+            (click)="openModal(type.id)"
+          >
+            <img loading="eager" [src]="type.main_image" [alt]="type.title" class="w-full h-full object-cover" />
+          </figure>
+          <figcaption class="text-center pt-3 text-secondary font-medium leading-7">
+            {{ type.title }}
+          </figcaption>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div class="container py-[80px]">
+    <!-- Skeleton Grid -->
+    <div class="grid grid-cols-12 gap-4">
+      @for (item of [].constructor(sectorSlug.types?.length); track $index;) {
+      <div class="col-span-12 md:col-span-4 lg:col-span-2 relative">
+        <figure class="w-full h-[200px] rounded-[15px] overflow-hidden bg-gray-200 animate-pulse">
+          <div
+            class="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer"
+          ></div>
+        </figure>
+      </div>
+      }
+    </div>
+  </div>
+
+  }
+  <!-- suppliers -->
+  <div class="container">
+    @if(!isLoading()) {
+    <div class="suppliers pb-15">
+      <h3 class="text-black text-2xl font-bold leading-9 pb-9">
+        {{ 'suppliers-title' | translate }}
+      </h3>
+      <div class="grid grid-cols-12 gap-6">
+        <figure class="col-span-12 lg:col-span-5">
+          <img
+            loading="lazy"
+            class="w-full h-full"
+            [src]="sectorSlug.supplies.image_url"
+            [alt]="sectorSlug.title"
+          />
+        </figure>
+        <div class="content col-span-12 lg:col-span-7">
+          <div
+            [innerHTML]="sectorSlug.supplies.body | customSanitize"
+            class="editor text-secondary font-medium leading-7 text-justify text-sub-title mb-[6px]"
+          ></div>
+          <div class="entites">
+            @for (item of sectorSlug.supplies.gov_entities; track $index) {
+            <div class="flex items-center gap-[6px]">
+              <img class="w-[24px] h-[24px]" loading="lazy" src="/images/badge.webp" [alt]="item" />
+              <p class="text-black text-sub-title leading-7 font-medium">{{ item }}</p>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <app-sector-suppliers-skeleton />
+    }
+  </div>
+  }
+
+  <!-- others -->
+  @if(!isLoading()){
+  <div class="container">
+    <h5 class="text-black text-2xl font-bold leading-9 pb-5">{{ 'other-title' | translate }}</h5>
+  </div>
+  <app-sector-card [sectors]="sectorSlug.others"></app-sector-card>
+  } @else { @for(i of [].constructor(sectorSlug.others?.length); track $index) {
+  <app-skeleton-sector-card />
+  } }
+</section>
+@if(showModal) {
+<div class="fixed inset-0 bg-black/60 flex items-start justify-center z-50" (click)="closeModal()">
+  <div
+    [class.ltr-carousel]="currentLang() === 'en'"
+    [class.rtl-carousel]="currentLang() === 'ar'"
+    #modal
+    class="bg-[#F2F2F2] rounded-[25px] md:py-[50px] md:px-[70px] py-10 px-7 relative w-[90%] max-w-[827px]"
+    (click)="$event.stopPropagation()"
+  >
+    <figure (click)="closeModal()" class="absolute top-[10px] start-[15px] cursor-pointer">
+      <img loading="lazy" src="/images/x.webp" alt="close" class="md:w-[63px] w-8" />
+    </figure>
+
+    <owl-carousel-o [options]="customOptions()" class="rounded-xl overflow-hidden">
+      @for(item of modalType.images; track item) {
+      <ng-template carouselSlide>
+        <img
+          [src]="item"
+          [alt]="modalType.title"
+          class="w-full h-[400px] object-cover rounded-xl"
+        />
+      </ng-template>
+      }
+    </owl-carousel-o>
+    <div class="body">
+      <p class="text-center text-black text-[32px] font-medium leading-9 pb-3 pt-6">
+        {{ modalType.title }}
+      </p>
+      @if (modalType.images.length > 0) {
+
+      <div
+        class="editor max-h-[100px] overflow-y-auto text-justify text-[16px]"
+        scrollHighlight
+        [innerHTML]="modalType.body | customSanitize"
+      ></div>
+      } @else {
+      <div
+        class="editor min-h-auto overflow-y-auto text-justify text-[16px]"
+        scrollHighlight
+        [innerHTML]="modalType.body | customSanitize"
+      ></div>
+      }
+    </div>
+  </div>
+</div>
+}

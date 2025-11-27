@@ -1,0 +1,117 @@
+<section [style]="{ 'background-color:#0049AF': bgColor }" class="md:py-[118px] py-15">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 all-images-group">
+      <!-- Right Section -->
+      <div class="flex flex-col justify-between">
+        <div class="content">
+          <h4 class="text-main-heading font-semibold pb-[18px]">
+            {{ 'sectors-title' | translate }}
+          </h4>
+          <div
+            class="editor text-secondary text-sub-title text-justify leading-8 pb-4 lg:pb-1 max-h-[130px] overflow-y-auto px-1"
+            [innerHTML]="sectorsData?.sectors_body"
+          ></div>
+        </div>
+
+        <!-- Bottom Two Images -->
+        <div class="flex gap-4">
+          <a
+            [routerLink]="['sectors', sectorsData.sectors[3].slug]"
+            class="relative w-1/2 overflow-hidden rounded-lg"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[3]?.image_url"
+                [alt]="sectorsData.sectors[3].meta?.image_alt"
+                loading="eager"
+                class="w-full h-[268px] object-cover"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[3]?.title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+          <a
+            class="relative w-1/2 overflow-hidden rounded-lg"
+            [routerLink]="['sectors', sectorsData.sectors[4].slug]"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[4]?.image_url"
+                [alt]="sectorsData.sectors[4].meta?.image_alt"
+                loading="eager"
+                class="w-full h-[268px] object-cover"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[4]?.title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+        </div>
+      </div>
+      <!-- Left Section -->
+      <div class="flex flex-col justify-between">
+        <!-- Overlapping Images -->
+        <div class="relative flex justify-center gap-x-[11px]">
+          <a
+            class="relative w-1/2 overflow-hidden rounded-lg"
+            [routerLink]="['sectors', sectorsData.sectors[0].slug]"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[0]?.image_url"
+                [alt]="sectorsData.sectors[0].meta?.image_alt"
+                loading="eager"
+                class="w-full h-[268px] object-cover"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[0]?.title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+          <a
+            class="relative w-1/2 overflow-hidden rounded-lg"
+            [routerLink]="['sectors', sectorsData.sectors[1].slug]"
+          >
+            <figure class="w-full h-[268px]">
+              <img
+                [src]="sectorsData.sectors[1]?.image_url"
+                [alt]="sectorsData.sectors[1].meta?.image_alt"
+                loading="eager"
+                class="w-full h-[268px] object-cover"
+              />
+              <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+                <p class="text-white font-bold">
+                  {{ sectorsData.sectors[1]?.title }}
+                </p>
+              </div>
+            </figure>
+          </a>
+        </div>
+
+        <!-- Full-width Image -->
+        <a class="w-full" [routerLink]="['sectors', sectorsData.sectors[2].slug]">
+          <figure class="relative w-full overflow-hidden rounded-lg mt-[20px]">
+            <img
+              [src]="sectorsData.sectors[2]?.image_url"
+              [alt]="sectorsData.sectors[2].meta?.image_alt"
+              loading="eager"
+              class="w-full h-[268px] object-cover"
+            />
+            <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
+              <p class="text-white font-bold">
+                {{ sectorsData.sectors[2]?.title }}
+              </p>
+            </div>
+          </figure>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

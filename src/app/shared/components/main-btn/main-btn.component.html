@@ -1,0 +1,8 @@
+<a
+  class="text-center"
+  [routerLink]="['/', currentLang$ | async, baseBtn.link]"
+  [target]="baseBtn.target"
+  [class]="classString"
+>
+  {{ baseBtn.text | translate }}
+</a>
