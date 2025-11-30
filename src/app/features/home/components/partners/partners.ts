@@ -67,7 +67,7 @@ export class Partners {
     };
   });
 
-  setActiveTab(index: number): void {
-    this.activeTab.set(index);
-  }
+  // setActiveTab(index: number): void {
+  //   this.activeTab.set(index);
+  // }
 }
