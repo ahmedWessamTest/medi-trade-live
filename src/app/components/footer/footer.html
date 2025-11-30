@@ -112,11 +112,13 @@
 
                 <li>
                   <a
-                    [href]="'tel:' + contactUsData.phone_number"
+                    [href]="'tel:+' + contactUsData.phone_number"
                     class="text-[#747474] flex items-center gap-2"
                   >
                     <img loading="lazy" src="/images/footer/Ringing.png" alt="ringing" />
-                    {{ contactUsData.phone_number }}
+                    <span dir="ltr">
+                      +{{ contactUsData.phone_number }}
+                    </span>
                   </a>
                 </li>
 
@@ -127,7 +129,9 @@
                     class="text-[#747474] flex items-center gap-2"
                   >
                     <img loading="lazy" src="/images/footer/WhatsApp.png" alt="whatsapp" />
-                    {{ contactUsData.whatsapp_number }}
+                    <span dir="ltr">
+                      +{{ contactUsData.whatsapp_number }}
+                    </span>
                   </a>
                 </li>
                 <li>
@@ -155,7 +159,7 @@
     </div>
 
     <!-- Copy-Right Area -->
-    <div class="relative z-13">
+    <div class="relative">
       <div class="container px-4 relative z-10">
         <div class="flex gap-0 justify-start mb-[35px]">
           <ul class="flex items-center gap-x-2">
