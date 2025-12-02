@@ -6,7 +6,7 @@
 
     <!-- Tabs Navigation -->
     @if(partnersData?.length && partnersData.length > 0) {
-    <!-- <div class="mb-8">
+    <div class="mb-8">
       <nav class="flex flex-wrap justify-evenly gap-2">
         @for(category of partnersData; track category.id; let i = $index) {
         <button
@@ -19,7 +19,7 @@
         </button>
         }
       </nav>
-    </div> -->
+    </div>
 
     <!-- Tab Content with Carousel -->
     @for(category of partnersData; track category.id; let i = $index) { @if(activeTab() === i) {

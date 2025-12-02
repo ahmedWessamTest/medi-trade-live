@@ -71,9 +71,9 @@ export class PartnersPage implements OnDestroy {
       });
   }
 
-  // setActiveTab(index: number): void {
-  //   this.activeTab.set(index);
-  // }
+  setActiveTab(index: number): void {
+    this.activeTab.set(index);
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
