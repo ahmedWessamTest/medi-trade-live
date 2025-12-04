@@ -1,10 +1,11 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-map',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe,NgOptimizedImage],
   templateUrl: './map.html',
   styleUrl: './map.css',
 })

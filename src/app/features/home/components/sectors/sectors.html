@@ -21,9 +21,12 @@
           >
             <figure class="w-full h-[268px]">
               <img
-                [src]="sectorsData.sectors[3]?.image_url"
+                [ngSrc]="sectorsData.sectors[3]?.image_url"
                 [alt]="sectorsData.sectors[3].meta?.image_alt"
-                loading="eager"
+                loading="lazy"
+                decoding="async"
+                height="268"
+                width="300"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
@@ -39,9 +42,12 @@
           >
             <figure class="w-full h-[268px]">
               <img
-                [src]="sectorsData.sectors[4]?.image_url"
+              height="268"
+                width="300"
+                [ngSrc]="sectorsData.sectors[4]?.image_url"
                 [alt]="sectorsData.sectors[4].meta?.image_alt"
-                loading="eager"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
@@ -63,9 +69,12 @@
           >
             <figure class="w-full h-[268px]">
               <img
-                [src]="sectorsData.sectors[0]?.image_url"
+              height="268"
+                width="300"
+                [ngSrc]="sectorsData.sectors[0]?.image_url"
                 [alt]="sectorsData.sectors[0].meta?.image_alt"
-                loading="eager"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
@@ -81,9 +90,12 @@
           >
             <figure class="w-full h-[268px]">
               <img
-                [src]="sectorsData.sectors[1]?.image_url"
+              height="268"
+                width="300"
+                [ngSrc]="sectorsData.sectors[1]?.image_url"
                 [alt]="sectorsData.sectors[1].meta?.image_alt"
-                loading="eager"
+                loading="lazy"
+                decoding="sync"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
@@ -99,9 +111,12 @@
         <a class="w-full" [routerLink]="['sectors', sectorsData.sectors[2].slug]">
           <figure class="relative w-full overflow-hidden rounded-lg mt-[20px]">
             <img
-              [src]="sectorsData.sectors[2]?.image_url"
+            height="268"
+                width="300"
+              [ngSrc]="sectorsData.sectors[2]?.image_url"
               [alt]="sectorsData.sectors[2].meta?.image_alt"
-              loading="eager"
+              loading="lazy"
+              decoding="async"
               class="w-full h-[268px] object-cover"
             />
             <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">

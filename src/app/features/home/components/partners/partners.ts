@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, Input, signal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { IPartnersCategory } from '@features/home/interface/home';
@@ -7,7 +8,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-partners',
-  imports: [CarouselModule, TranslatePipe],
+  imports: [CarouselModule, TranslatePipe, NgOptimizedImage],
   templateUrl: './partners.html',
   styleUrl: './partners.css',
 })

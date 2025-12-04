@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Sector } from './../../interface/home';
+import { NgOptimizedImage } from '@angular/common';
 
 export interface sectorData {
   sectors: Sector[];
@@ -9,7 +10,7 @@ export interface sectorData {
 }
 @Component({
   selector: 'app-sectors-section',
-  imports: [TranslatePipe, RouterLink],
+  imports: [TranslatePipe, RouterLink,NgOptimizedImage],
   templateUrl: './sectors.html',
   styleUrl: './sectors.css',
 })

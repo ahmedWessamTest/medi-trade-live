@@ -1,10 +1,11 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { WhyReason } from '@features/home/interface/home';
 
 @Component({
   selector: 'app-card',
-  imports: [CustomSanitizePipe],
+  imports: [CustomSanitizePipe, NgOptimizedImage],
   templateUrl: './card.component.html',
   styles: '',
 })

@@ -2,7 +2,7 @@
   class="flex flex-col h-full text-center justify-between items-center pt-[9px] pb-[36px] px-[8px] rounded-[15px] border"
 >
   <figure class="mb-[5px]">
-    <img [src]="returnImage(card.id.toString())" class="w-[45px] h-[45px]" loading="lazy" alt="" />
+    <img [ngSrc]="returnImage(card.id.toString())" class="h-[45px]" width="45" height="45" loading="lazy" decoding="async" alt="" role="presentation" />
   </figure>
   <p class="text-black font-medium text-sub-title line-height-[35px]">
     {{ card.title }}

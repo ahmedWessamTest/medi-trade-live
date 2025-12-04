@@ -15,7 +15,7 @@
         <!-- Left column -->
         <div class="col-span-12 lg:col-span-5">
           <figure class="w-full h-full">
-            <img loading="lazy" [src]="aboutData.image_url" alt="about-image" class="w-full" />
+            <img loading="lazy" decoding="async" [ngSrc]="aboutData.image_url" width="515" height="620" alt="about-image" class="w-full" />
           </figure>
         </div>
 

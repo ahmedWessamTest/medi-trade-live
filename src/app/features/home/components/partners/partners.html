@@ -35,8 +35,11 @@
             <figure>
               <img
                 class="w-24 h-24 object-contain mx-auto"
-                [src]="partner.logo_url"
+                [ngSrc]="partner.logo_url"
                 [alt]="partner.name + ' logo'"
+                height="96"
+                width="200"
+                decoding="async"
                 loading="lazy"
               />
             </figure>
