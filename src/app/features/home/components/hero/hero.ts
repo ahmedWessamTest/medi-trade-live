@@ -16,9 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     CustomSanitizePipe,
   ],
   templateUrl: './hero.html',
-  styleUrl: './hero.css',
-  changeDetection:ChangeDetectionStrategy.OnPush
-  
+  styleUrl: './hero.css',  
 })
 export class Hero {
   currentLang$ = inject(LocalizationService).getLanguage();
