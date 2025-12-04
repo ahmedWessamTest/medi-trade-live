@@ -2,20 +2,20 @@
 <section class="py-15">
   <div class="container">
     <div class="iso grid w-full xl:gap-x-[86px] grid-cols-12">
-      <div class="col-span-12 lg:col-span-9 mb-[23px]">
-        <p class="text-black text-main-sub-heading font-semibold leading-[30px] mb-[32px]">
+      <div class="col-span-12 lg:col-span-9 ">
+        <p class="text-black text-main-sub-heading font-semibold leading-[30px] mb-4">
           {{ isoData.title }}
         </p>
         <div
           [innerHTML]="isoData.description | customSanitize"
-          class="editor text-black text-sub-title font-medium leading-[50px] mb-6"
+          class="editor text-black text-sub-title font-medium leading-[50px] "
         ></div>
       </div>
-      <div class="col-span-12 lg:col-span-3">
-        <figure>
+      <div class="col-span-12 lg:col-span-2">
+        <figure class="h-full aspect-square">
           <img
             loading="lazy"
-            class="w-full cursor-pointer"
+            class="cursor-pointer h-full "
             [src]="isoData.image"
             alt="iso"
             (click)="openModel()"

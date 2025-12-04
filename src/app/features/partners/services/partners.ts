@@ -9,7 +9,6 @@ import { IPartners } from '../interface/partners';
 })
 export class Partners extends Http {
   getPartners(lang: string): Observable<IPartners> {
-    console.log(`${API_CONFIG.BASE_URL}/${API_CONFIG.partners}?lang=${lang}`);
     return this.get<IPartners>(`${API_CONFIG.BASE_URL}/${API_CONFIG.partners}?lang=${lang}`);
   }
 }
