@@ -23,7 +23,7 @@
           </h4>
           <div
             [innerHTML]="sector.content | customSanitize"
-            class="text-sub-title text-secondary line-clamp-5 text-justify mb-4 leading-8"
+            class="text-sub-title text-secondary line-clamp-5 md:text-justify mb-4 leading-8"
           ></div>
           <a
             [routerLink]="['/', currentLang$ | async, 'sectors', sector.slug]"

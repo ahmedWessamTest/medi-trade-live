@@ -10,7 +10,7 @@
   @if(!isLoading() ){ @defer (on idle){
   <div class="container pt-[60px]">
     <div class="mb-8">
-      <nav class="flex flex-wrap justify-between gap-1">
+      <nav class="flex flex-wrap justify-around gap-1">
         @for(category of partnersData().data; track category.id; let i = $index) {
         <button
           type="button"
