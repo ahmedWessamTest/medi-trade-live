@@ -1,9 +1,20 @@
+@defer(on immediate) {
 <section class="relative w-full h-screen overflow-hidden">
   <!-- Background Video -->
+  @if (isLoading) {
+  <figure class="w-full h-full object-cover absolute top-0 left-0">
+    <img
+      src="/images/meditrade.webp"
+      loading="eager"
+      alt="hero-skeleton"
+      class="w-full h-full object-cover"
+    />
+  </figure>
+  }
   <video
     #videoElement
+    (canplay)="onCanPlay()"
     [src]="heroData.video_url"
-    poster="/images/meditrade.webp"
     autoplay
     muted
     loop
@@ -49,4 +60,6 @@
     </div>
   </div>
 </section>
-
+} @placeholder {
+<app-hero-skeleton [heroData]="heroData" />
+}
