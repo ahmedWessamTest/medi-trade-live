@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, isPlatformBrowser } from '@angular/common';
+import { AsyncPipe, isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SeoITags } from '@core/interface/common';
@@ -21,7 +21,6 @@ import { distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
   imports: [
     Banner,
     BannerSkeletonComponent,
-    DatePipe,
     CustomSanitizePipe,
     ImageBannerSkeletonComponent,
     RouterLink,
