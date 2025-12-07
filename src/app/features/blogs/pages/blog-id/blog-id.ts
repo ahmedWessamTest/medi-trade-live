@@ -14,15 +14,7 @@ import { BannerSkeletonComponent } from '@shared/components/skeleton-loader/bann
 import { ImageBannerSkeletonComponent } from '@shared/components/skeleton-loader/image-banner-skeleton/image-banner-skeleton.component';
 import { SkeletonLoaderMediaComponent } from '@shared/components/skeleton-loader/skeleton-loader-media/skeleton-loader-media.component';
 import { decodeSlugFromUrl } from '@shared/functions/decodeUrl';
-
-import {
-  map,
-  distinctUntilChanged,
-  switchMap,
-  takeUntil,
-  combineLatestWith,
-  Subject
-} from 'rxjs';
+import { distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-blog-id',
@@ -40,105 +32,129 @@ import {
   styleUrl: './blog-id.css',
 })
 export class BlogId {
-
   private blogService = inject(BlogService);
+
   private route = inject(ActivatedRoute);
+
   private router = inject(Router);
+
   private platformId = inject(PLATFORM_ID);
+
   private isBrowser = isPlatformBrowser(this.platformId);
+
+  private translate = inject(TranslateService);
+
   private languageService = inject(LocalizationService);
-  private separatedSeoTags = inject(SeparatedSeoTags);
+
+  private seoHelper = inject(SEOHelperService);
 
   private destroy$ = new Subject<void>();
 
-  isLoading = signal(true);
+  private separatedSeoTags = inject(SeparatedSeoTags);
+
+  currentLang$ = this.languageService.getLanguage();
+
+  isLoading = signal<boolean>(true);
+
+  slug: string = '';
+
+  seo = signal<SeoITags>({} as SeoITags);
+
+  currentPageUrl: string = '';
+
+  getSlug() {
+    this.route.params.pipe(distinctUntilChanged()).subscribe((next) => {
+      this.slug = next['slug'];
+    });
+  }
+
   blogsData = signal<IBlog | null>(null);
-  slug = '';
 
   ngOnInit() {
-    const slug$ = this.route.params.pipe(
-      map(p => p['slug']),
-      distinctUntilChanged()
-    );
+    this.getSlug();
 
-    slug$
+    this.languageService
+      .getLanguage()
       .pipe(
-        combineLatestWith(this.languageService.getLanguage()),
-        switchMap(([slug, lang]) => {
-          this.slug = slug;
-          return this.blogService.getBlogBySlug(slug, lang).pipe(
-            map(res => ({ res, slug, lang }))
-          );
-        }),
+        switchMap((lang) => this.blogService.getBlogBySlug(this.slug, lang)),
         takeUntil(this.destroy$)
       )
-      .subscribe(({ res, slug, lang }) => {
+      .subscribe((res) => {
         this.blogsData.set(res);
+        console.log(this.blogsData());
+        
         this.isLoading.set(false);
-
+        // Validate and redirect if URL doesn't match the correct language-slug combination
         this.validateAndRedirectUrl();
-
+        // Handle SEO
         this.separatedSeoTags.getSeoTagsDirect(
-          res.article.seo_tags,
-          res.article.image_url,
-          res.article.slug
+          this.blogsData()?.article.seo_tags ?? {} as SeoITags,
+          this.blogsData()?.article.image_url ?? '',
+          this.blogsData()?.article.slug?? ''
         );
       });
   }
 
-  /**
-   * Fix mixed slugs: Arabic slug in EN mode or English slug in AR mode
-   */
-  private validateAndRedirectUrl(): void {
-    if (!this.isBrowser || !this.blogsData()) return;
-
-    const blog = this.blogsData()!.article;
-
-    const currentSlug = decodeSlugFromUrl(this.slug);
-    const expectedSlug = blog.slug ?? '';
-    const otherSlug = blog.other_slug ?? '';
-
-    // Arabic letters check
-    const hasArabic = (text: string) => /[\u0600-\u06FF]/.test(text);
-
-    const currentLang = this.languageService.getCurrentLanguage();
-    const isExpectedArabic = hasArabic(expectedSlug);
-    const isOtherArabic = hasArabic(otherSlug);
-    const isCurrentArabic = hasArabic(currentSlug);
-
-    /**
-     * 0) If slug already matches (correct lang), do nothing
-     */
-    if (currentSlug === expectedSlug || currentSlug === otherSlug) {
-      return;
-    }
-
-    /**
-     * 1) Decide which slug should be used for this language
-     */
-    let correctSlug = expectedSlug;
-
-    if (currentLang === 'ar') {
-      correctSlug = isExpectedArabic ? expectedSlug : otherSlug;
-    } else {
-      correctSlug = !isExpectedArabic ? expectedSlug : otherSlug;
-    }
-
-    /**
-     * 2) Redirect safely
-     */
-    this.router.navigate(['/', currentLang, 'blogs', correctSlug], {
-      replaceUrl: true,
-    });
-  }
-
   openPopup(event: MouseEvent, url: string | null | undefined) {
     event.preventDefault();
-    if (!url) return;
 
     const options =
       'height=500,width=600,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes';
-
-    window.open(url, 'share-popup', options);
-  }
+if(url) {
+  window.open(url, 'share-popup', options);
 }
+  }
+
+  /**
+   * Validates if the current URL matches the correct language-slug combination
+   * and redirects to the proper URL if there's a mismatch to avoid duplicate content
+   */
+  private validateAndRedirectUrl(): void {
+    if (!this.isBrowser || !this.blogsData) return;
+
+    const currentLang = this.languageService.getCurrentLanguage();
+    const currentSlug = this.slug;
+    const currentSlugDecoded = decodeSlugFromUrl(currentSlug);
+    const expectedSlug = this.blogsData()?.article.slug ?? '';
+    const otherSlug = this.blogsData()?.article.other_slug ?? '';
+
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const isCurrentSlugArabic = arabicRegex.test(currentSlugDecoded);
+    const isExpectedSlugArabic = arabicRegex.test(expectedSlug);
+
+    // Check if current URL has the wrong language-slug combination
+    const shouldRedirect =
+      // Case 1: Current language is Arabic but slug is English
+      (currentLang === 'ar' && !isCurrentSlugArabic && isExpectedSlugArabic) ||
+      // Case 2: Current language is English but slug is Arabic
+      (currentLang === 'en' && isCurrentSlugArabic && !isExpectedSlugArabic) ||
+      // Case 3: Slug doesn't match the expected slug for current language
+      currentSlugDecoded !== expectedSlug;
+
+    if (shouldRedirect) {
+      // Determine the correct slug based on current language
+      let correctSlug: string;
+
+      if (currentLang === 'ar' && isExpectedSlugArabic) {
+        correctSlug = expectedSlug;
+      } else if (currentLang === 'en' && !isExpectedSlugArabic) {
+        correctSlug = expectedSlug;
+      } else {
+        // Use other_slug if it matches the current language
+        const isOtherSlugArabic = arabicRegex.test(otherSlug);
+        if (currentLang === 'ar' && isOtherSlugArabic) {
+          correctSlug = otherSlug;
+        } else if (currentLang === 'en' && !isOtherSlugArabic) {
+          correctSlug = otherSlug;
+        } else {
+          correctSlug = expectedSlug;
+        }
+      }
+
+      // Navigate to the correct URL
+      this.router.navigate(['/', currentLang, 'blogs', correctSlug], {
+        replaceUrl: true, // Replace current URL in history to avoid back button issues
+      });
+    }
+  }
+} 

@@ -13,6 +13,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './blog.css',
 })
 export class Blog {
-  blogData = input<IBlog[]>([]);
+  blogData = input<IBlog[] | null | undefined>(null);
   currentLang$ = inject(LocalizationService).getLanguage();
 }
