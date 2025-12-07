@@ -32,7 +32,6 @@
         @for(partner of category.partners; track partner.id) {
         <ng-template carouselSlide>
           <div class="partner-card mx-2 p-6 rounded-2xl border bg-white h-full">
-            <figure>
               <img
                 class="w-24 h-24 object-contain mx-auto"
                 [ngSrc]="partner.logo_url"
@@ -42,7 +41,6 @@
                 decoding="async"
                 loading="lazy"
               />
-            </figure>
             <p
               [title]="partner.name"
               class="text-black text-center font-medium text-lg line-clamp-1"
