@@ -13,11 +13,12 @@ import { TranslatePipe } from '@ngx-translate/core';
     <!-- Overlay -->
     <div class="absolute top-0 left-0 w-full h-full bg-[#1976ACCC] z-10 flex items-center">
       <div class="container px-6 text-center text-white">
-        <div class="w-[180px] md:w-[246px] md:h-[258px] mb-[22px] text-center mx-auto">
-          <div
-            class="w-full h-full object-cover"
-          ></div>
-        </div>
+        <div
+        class="w-[246px] h-[258px] mx-auto mb-[22px]- bg-gray-200 animate-pulse rounded flex items-center justify-center"
+      >
+        <span class="sr-only">MedeTrade Logo</span>
+      </div>
+        
         <!-- Description skeleton (two lines) -->
         <div class="w-4/5 h-[23px] mx-auto mb-[10px] rounded-md bg-gray-400 animate-pulse"></div>
         <div class="w-3/5 h-[110px] lg:h-[54px] mx-auto mb-[20px] rounded-md bg-gray-400 animate-pulse"></div>
