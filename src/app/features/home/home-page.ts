@@ -62,7 +62,7 @@ export class HomePage {
   skeletonData!: { title: string; description: string };
 
   homeServices = inject(Home);
-  
+
   currentLang = 'ar';
 
   homeData!: Data;
