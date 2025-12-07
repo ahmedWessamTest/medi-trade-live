@@ -55,11 +55,11 @@
   </div>
   } @placeholder {
   <div class="animate-pulse mt-10">
-    <app-partners-skeleton [itemCount]="partnersData().data?.length || 4" />
+    <app-partners-skeleton [itemCount]="partnersData().data.length || 4" />
   </div>
 
   } } @else {
-  <app-partners-skeleton [itemCount]="partnersData().data?.length || 4" />
+  <app-partners-skeleton [itemCount]="partnersData().data.length || 4" />
   } @if(!isLoading()) {
   <!-- Contact Form -->
   @defer (on idle){

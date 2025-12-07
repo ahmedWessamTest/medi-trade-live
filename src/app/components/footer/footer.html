@@ -13,6 +13,7 @@
                     class="rounded-full w-[120px] h-auto"
                     alt="MediTrade Logo"
                     loading="lazy"
+                    decoding="async"
                   />
                 </a>
               </div>
@@ -96,7 +97,7 @@
                 <li
                   class="rounded-[15px] border border-[#A6A6A600] shadow-md p-2 flex items-center gap-2"
                 >
-                  <img loading="lazy" class="127px" src="/images/footer/map.webp" alt="map" />
+                  <img loading="lazy" decoding="async" class="127px" src="/images/footer/map.webp" alt="map" />
                   <a target="_blank" [href]="contactUsData.map_url" class="text-[#747474]">
                     {{ contactUsData.address }}
                   </a>
@@ -115,7 +116,7 @@
                     [href]="'tel:+2' + contactUsData.phone_number"
                     class="text-[#747474] flex items-center gap-2"
                   >
-                    <img loading="lazy" src="/images/footer/Ringing.png" alt="ringing" />
+                    <img loading="lazy" decoding="async" src="/images/footer/Ringing.png" alt="ringing" />
                     <span dir="ltr">
                       +2{{ contactUsData.phone_number }}
                     </span>
@@ -128,7 +129,7 @@
                     target="_blank"
                     class="text-[#747474] flex items-center gap-2"
                   >
-                    <img loading="lazy" src="/images/footer/WhatsApp.png" alt="whatsapp" />
+                    <img loading="lazy" decoding="async" src="/images/footer/WhatsApp.png" alt="whatsapp" />
                     <span dir="ltr">
                       +2{{ contactUsData.whatsapp_number }}
                     </span>
@@ -154,7 +155,7 @@
       <div
         class="bg-map absolute bottom-0 translate-y-[50%] opacity-10 ltr:translate-x-[30%] rtl:-translate-x-[30%] rtl:start-0 ltr:left-0 w-1/2 h-[301px] -z-1"
       >
-        <img loading="lazy" src="/images/footer/map.gif" alt="map" />
+        <img loading="lazy" decoding="async" src="/images/footer/map.gif" alt="map" />
       </div>
     </div>
 
@@ -308,7 +309,7 @@
                 loading="lazy"
                 src="/images/footer/bond.webp"
                 alt="DIGITAL BOND Logo"
-                loading="lazy"
+                decoding="async"
               />
             </a>
           </div>

@@ -11,7 +11,7 @@
   } @if(!isLoading()) {
   <app-sector-card [sectors]="customSectorData.sectors" />
 
-  } @else { @for(i of [].constructor(customSectorData.sectors?.length); track i) {
+  } @else { @for(i of [].constructor(customSectorData.sectors.length); track i) {
   <app-skeleton-sector-card />
   } } @if (!isLoading()) {
 

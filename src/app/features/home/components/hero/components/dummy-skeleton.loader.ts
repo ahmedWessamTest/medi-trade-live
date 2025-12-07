@@ -23,7 +23,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         </figure>
         <!-- Description skeleton (two lines) -->
         <div class="w-4/5 h-[23px] mx-auto mb-[10px] rounded-md bg-gray-400 animate-pulse"></div>
-        <div class="w-3/5 h-[23px] mx-auto mb-[20px] rounded-md bg-gray-400 animate-pulse"></div>
+        <div class="w-3/5 h-[110px] lg:h-[54px] mx-auto mb-[20px] rounded-md bg-gray-400 animate-pulse"></div>
 
         <div class="flex gap-x-[20px] items-center justify-center pt-[20px]">
           <a

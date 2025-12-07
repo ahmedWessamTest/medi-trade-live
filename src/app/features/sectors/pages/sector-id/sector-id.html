@@ -103,7 +103,7 @@
   <div class="container py-[80px]">
     <!-- Skeleton Grid -->
     <div class="grid grid-cols-12 gap-4">
-      @for (item of [].constructor(sectorSlug.types?.length); track $index;) {
+      @for (item of [].constructor(sectorSlug.types.length); track $index;) {
       <div class="col-span-12 md:col-span-4 lg:col-span-2 relative">
         <figure class="w-full h-[200px] rounded-[15px] overflow-hidden bg-gray-200 animate-pulse">
           <div
@@ -160,7 +160,7 @@
     <h5 class="text-black text-2xl font-bold leading-9 pb-5">{{ 'other-title' | translate }}</h5>
   </div>
   <app-sector-card [sectors]="sectorSlug.others"></app-sector-card>
-  } @else { @for(i of [].constructor(sectorSlug.others?.length); track $index) {
+  } @else { @for(i of [].constructor(sectorSlug.others.length); track $index) {
   <app-skeleton-sector-card />
   } }
 </section>
