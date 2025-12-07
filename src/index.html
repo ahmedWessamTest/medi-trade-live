@@ -11,7 +11,12 @@
       crossorigin
     />
 
-    <link rel="preconnect" href="https://mshmohm.com" />
+    <!-- Removed preconnect to external API host to avoid unnecessary early connection attempts during SSR/dev -->
+
+    <!-- Preload global stylesheet to reduce render-blocking; becomes stylesheet on load -->
+    <link rel="preload" href="/styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+
     <link rel="canonical" href="https://medi-trade.netlify.app/" />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -13,7 +13,7 @@ import { ImageSkeletonComponent } from '@shared/components/skeleton-loader/image
       <img
         [src]="src"
         [alt]="alt"
-        loading="eager"
+        [attr.loading]="loading"
         [class]="imageClass"
         [style.height]="height"
         (load)="onImageLoad()"
