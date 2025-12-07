@@ -17,8 +17,8 @@ export class LocalizationService {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private title: Title,
-
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
