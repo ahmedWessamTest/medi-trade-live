@@ -33,13 +33,13 @@
           class="w-full h-full object-cover"
         />
       </figure>
-      <h1 class="text-white text-[40px] font-medium line-height-[56px] mb-3">
+      <h1 class="text-white text-main-title md:text-[40px] font-medium line-height-[56px] mb-3">
         {{ heroData.title }}
       </h1>
 
       <div
         [innerHTML]="heroData.description | customSanitize"
-        class="editor text-sub-title mb-[20px] text-[#E4E4E4] line-height-[40px] "
+        class="editor text-sub-title mb-[20px] text-[#E4E4E4] line-height-[40px]"
       ></div>
 
       <div class="flex gap-x-[20px] items-center justify-center pt-[20px]">
