@@ -1,7 +1,7 @@
 <div class="inner-banner relative overflow-hidden w-full h-[348px]">
   <img
-    [ngSrc]="image"
-    [alt]="altImage || 'Banner image'"
+    [ngSrc]="image()"
+    [alt]="altImage() || 'Banner image'"
     class="absolute object-cover object-center w-full h-full"
     fill
     placeholder="blur"
