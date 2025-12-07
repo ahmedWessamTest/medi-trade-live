@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { LocalizationService } from '@core/services/localization.service';
@@ -13,6 +13,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './blog.css',
 })
 export class Blog {
-  @Input() blogData: IBlog[] = [];
+  blogData = input<IBlog[]>([]);
   currentLang$ = inject(LocalizationService).getLanguage();
 }
