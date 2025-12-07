@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -10,5 +10,5 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './hero-skeleton.component.css',
 })
 export class HeroSkeletonComponent {
-  @Input({ required: true }) heroData!: { description: string; title: string };
+   heroData =  input<{ description: string; title: string }>();
 }

@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input, Input } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { MainHeading } from '@shared/components/main-heading/main-heading.component';
 
@@ -10,9 +10,9 @@ import { MainHeading } from '@shared/components/main-heading/main-heading.compon
   styleUrl: './banner.css',
 })
 export class Banner {
-  @Input({ required: true }) path: string = '';
-  @Input({ required: true }) image: string = '';
-  @Input({ required: false }) altImage: string = '';
+  path = input<string>('');
+  image =  input<string>('');
+  altImage =  input<string>('');
 
   currentLang = inject(LocalizationService).getLanguage();
 }

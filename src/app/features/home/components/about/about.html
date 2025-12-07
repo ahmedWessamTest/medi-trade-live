@@ -7,7 +7,7 @@
       {{ 'AboutMedi.colorTitle' | translate }}
     </h2>
     <p class="text-secondary text-sub-title font-normal line-height-[45px] mb-[48px]">
-      {{ aboutData.title }}
+      {{ aboutData()?.title }}
     </p>
 
     <div class="about-content">
@@ -15,7 +15,15 @@
         <!-- Left column -->
         <div class="col-span-12 lg:col-span-5">
           <figure class="w-full h-full">
-            <img loading="lazy" decoding="async" [ngSrc]="aboutData.image_url" width="515" height="620" alt="about-image" class="w-full" />
+            <img
+              loading="lazy"
+              decoding="async"
+              [ngSrc]="aboutData()?.image_url ?? ''"
+              width="515"
+              height="620"
+              alt="about-image"
+              class="w-full"
+            />
           </figure>
         </div>
 
@@ -23,14 +31,16 @@
         <div class="col-span-12 lg:col-span-7 relative">
           <div class="content relative z-10">
             <div
-              [innerHTML]="aboutData.body | customSanitize"
+              [innerHTML]="aboutData()?.body | customSanitize"
               class="editor text-secondary text-sub-title font-medium ltr:text-left rtl:text-right text-justify leading-main mb-[15px]"
             ></div>
 
             <div class="taps @container">
               <!-- Tabs buttons -->
-              <div class="tap-item flex gap-y-3 flex-col @min-[380px]:flex-row  items-center md:gap-[15px] gap-x-1 mb-[20px]">
-                @for (tab of aboutData.tabs; track tab.position) {
+              <div
+                class="tap-item flex gap-y-3 flex-col @min-[380px]:flex-row items-center md:gap-[15px] gap-x-1 mb-[20px]"
+              >
+                @for (tab of aboutData()?.tabs; track tab.position) {
                 <button
                   class="rounded-[10px] w-full @min-[380px]:w-auto cursor-pointer text-sub-title font-medium line-height-[35px] py-[9px] px-[28px] transition-colors"
                   [class]="{
@@ -57,8 +67,16 @@
               <div class="bg-layer mx-auto lg:-translate-y-[15%]"></div>
             </div>
           </div>
-          <div class="bg-layer absolute bottom-0 translate-y-[10%] ms-auto  w-[300px] md:w-[498px] aspect-square z-0">
-            <img class="w-full h-full" src="/images/about-us/bg-layer.webp" decoding="async" loading="lazy" alt="layer" />
+          <div
+            class="bg-layer absolute bottom-0 translate-y-[10%] ms-auto w-[300px] md:w-[498px] aspect-square z-0"
+          >
+            <img
+              class="w-full h-full"
+              src="/images/about-us/bg-layer.webp"
+              decoding="async"
+              loading="lazy"
+              alt="layer"
+            />
           </div>
         </div>
       </div>

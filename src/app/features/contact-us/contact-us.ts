@@ -1,3 +1,4 @@
+import { SeoITags } from '@core/interface/common';
 import { Component, inject, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
@@ -32,7 +33,7 @@ export class ContactUs implements OnDestroy {
   private destroy$ = new Subject<void>();
 
   isLoading: WritableSignal<boolean> = signal(true);
-  contactUsData!: IContactUsPage;
+  contactUsData =  signal<IContactUsPage | null>({} as IContactUsPage);
 
   ngOnInit(): void {
     this.getContactUsData();
@@ -42,11 +43,11 @@ export class ContactUs implements OnDestroy {
     this.isLoading.set(true);
     this.currentLang$.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((lang) => {
       this.contactUsService.contactInformation(lang).subscribe((res) => {
-        this.contactUsData = res;
+        this.contactUsData.set(res);
         this.isLoading.set(false);
         this.separatedSeoTags.getSeoTagsDirect(
-          this.contactUsData.seo_tags,
-          this.contactUsData.banner_image,
+          this.contactUsData()?.seo_tags ?? {} as SeoITags,
+          this.contactUsData()?.banner_image ?? '',
           'contact-us'
         );
       });
