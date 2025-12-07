@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://medi-trade-website.vercel.app/sitemap.xml
+Sitemap: https://medi-trade.netlify.app/sitemap.xml

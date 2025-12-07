@@ -9,7 +9,7 @@ import { BehaviorSubject, filter } from 'rxjs';
   providedIn: 'root',
 })
 export class LocalizationService {
-  private selectedLanguage$ = new BehaviorSubject<string>('ar');
+  private selectedLanguage$ = new BehaviorSubject<string>('en');
   private isArabic$ = new BehaviorSubject<boolean>(false);
 
   constructor(
