@@ -7,7 +7,7 @@ import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
 import { IBlog } from '@features/blogs/interface/blog';
 import { BlogService } from '@features/blogs/services/blog';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Banner } from '@shared/components/banner/banner';
 import { BannerSkeletonComponent } from '@shared/components/skeleton-loader/banner-skeleton/banner-skeleton.component';
 import { ImageBannerSkeletonComponent } from '@shared/components/skeleton-loader/image-banner-skeleton/image-banner-skeleton.component';
