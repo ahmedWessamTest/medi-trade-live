@@ -1,8 +1,5 @@
-@defer(on idle) {
 <app-navbar />
-} @placeholder {
-<app-skeleton-navbar />
-}
+
 <app-main-layout />
 <app-footer [contactUsData]="contactUsData" />
 <app-floating-whatsapp [whatsappNumber]="contactUsData.whatsapp_number" />

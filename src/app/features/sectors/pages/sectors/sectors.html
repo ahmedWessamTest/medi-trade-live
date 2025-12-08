@@ -1,17 +1,17 @@
 <section>
   <!-- banner -->
-  @if(!isLoading()) {
+  @if(!isLoading() && sectorsData) {
   <app-banner [path]="'sectors-title' | translate" [image]="sectorsData.banner_image"></app-banner>
   } @else {
   <app-banner-skeleton />
-  } @if(!isLoading()){
+  } @if(!isLoading() && customSectorData){
   <app-sector-alt-section [sectorsData]="customSectorData" />
   } @else {
   <app-sector-alt-section-skeleton />
-  } @if(!isLoading()) {
+  } @if(!isLoading() && customSectorData) {
   <app-sector-card [sectors]="customSectorData.sectors" />
 
-  } @else { @for(i of [].constructor(customSectorData.sectors.length); track i) {
+  } @else { @for(i of [].constructor(customSectorData?.sectors?.length); track i) {
   <app-skeleton-sector-card />
   } } @if (!isLoading()) {
 

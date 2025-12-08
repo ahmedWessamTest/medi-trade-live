@@ -1,6 +1,6 @@
 <section>
-  @if(!isLoading()){
-  <app-banner [path]="'navbar.blogs' | translate" [image]="blogsData.banner_image"></app-banner>
+  @if(!isLoading() && blogsData){
+  <app-banner [path]="'navbar.blogs' | translate" [image]="blogsData?.banner_image ?? ''"></app-banner>
   } @else {
   <app-banner-skeleton />
   }
@@ -33,7 +33,7 @@
   </div>
 
   <!-- Blog -->
-  @if(!isLoading()) { @if(blogsData.data.length) {
+  @if(!isLoading() && blogsData) { @if(blogsData.data.length) {
 
   <app-blog [blogData]="blogsData.data" />
   <!-- Pagination Controls - Always reserve space -->
@@ -43,7 +43,7 @@
       <button
         [routerLink]="['/', currentLang$ | async, 'blogs']"
         [queryParams]="{ page: currentPage() - 1 }"
-        [disabled]="!blogsData.links.prev"
+        [disabled]="!blogsData?.links?.prev"
         [class.opacity-50]="!blogsData.links.prev"
         class="pagination-button px-[10px] pb-[1px] bg-[#D9D9D9] rounded-[10px] font-medium text-[20px] text-black hover:bg-gray-300 disabled:cursor-not-allowed border-[1px] border-[#B4B4B4]"
       >
@@ -88,7 +88,7 @@
     </p>
   </div>
   } } @else {
-  <app-skeleton-loader-media [itemCount]="blogsData.data.length || 4" [haveTransform]="false" />
+  <app-skeleton-loader-media [itemCount]="blogsData?.data?.length || 4" [haveTransform]="false" />
   }
   <!-- Contact Form -->
   @if(!isLoading()) {
