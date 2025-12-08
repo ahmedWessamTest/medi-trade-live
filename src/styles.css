@@ -15,7 +15,7 @@
   body {
     font-family: Tahoma, Arial, sans-serif;
     @media screen and (width > 768px){
-      font-family: 'Almarai', Arial, sans-serif;
+      font-family: 'Cairo', Arial, sans-serif;
     }
     font-weight: 500;
     font-size: 18px;
