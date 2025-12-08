@@ -1,6 +1,6 @@
 <section>
   @if(!isLoading()){
-  <app-banner [path]="'navbar.media' | translate" [image]="media.banner_image"></app-banner>
+  <app-banner [path]="'navbar.media' | translate" [image]="media?.banner_image ?? ''"></app-banner>
   } @else {
   <app-banner-skeleton />
   }
@@ -52,7 +52,7 @@
     </div>
     }
     <!-- Videos -->
-    @if(!isLoading()){ @defer (on timer(400)) {
+    @if(!isLoading() && media){ @defer (on timer(400)) {
 
     <div class="media pt-[calc(60px+115px)]">
       <div class="container">
@@ -107,7 +107,7 @@
   </div>
 
   <!-- Contact Form -->
-  @if(!isLoading()) {
+  @if(!isLoading() && media) {
   <app-contact-form [contactUsFormImage]="media.contact_image"> </app-contact-form>
   } @else {
   <app-contact-us-form-skeletonloader />
