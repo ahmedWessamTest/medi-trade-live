@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import "../public/fonts/fonts.css";
 @theme {
   --color-main: #1976ac;
   --color-secondary: #464646;
@@ -14,9 +13,9 @@
 @layer base {
   html,
   body {
-    font-family: "Cairo", sans-serif;
-    @media screen and (width < 768px) {
-      font-family: Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    @media screen and (width > 768px) {
+      font-family: "Cairo", sans-serif;
     }
     font-weight: 500;
     font-size: 18px;

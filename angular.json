@@ -37,6 +37,7 @@
               }
             ],
             "styles": [
+              "public/fonts/fonts.css",
               "public/fontawesome/css/all.min.css",
               "src/styles/base.css",
               "node_modules/ngx-toastr/toastr.css",
