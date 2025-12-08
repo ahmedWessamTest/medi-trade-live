@@ -9,6 +9,25 @@
   --text-sub-title: 1.125rem; /* 18px */
   --leading-main: 35px;
 }
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/cairo/Cairo-Regular.woff2') format('woff2'),
+    url('/fonts/cairo/Cairo-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/cairo/Cairo-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/cairo/Cairo-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
 
 @layer base {
   html,
