@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, ElementRef, inject, input, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { LocalizationService } from '@core/services/localization.service';
@@ -23,7 +23,7 @@ import { HeroSkeletonComponent } from './components/hero-skeleton/hero-skeleton.
 export class Hero {
   currentLang$ = inject(LocalizationService).getLanguage();
 
-  heroData  = input<IHero>();
+  @Input({ required: true }) heroData: IHero = {} as IHero;
 
   baseBtn = {
     text: 'navbar.contact',

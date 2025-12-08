@@ -1,7 +1,7 @@
 <div class="inner-banner relative overflow-hidden w-full h-[348px]">
   <img
-    [ngSrc]="image()"
-    [alt]="altImage() || 'Banner image'"
+    [ngSrc]="image"
+    [alt]="altImage || 'Banner image'"
     class="absolute object-cover object-center w-full h-full"
     fill
     placeholder="blur"
@@ -11,7 +11,7 @@
   <!-- Content Overlay -->
   <div class="container relative z-10 h-full">
     <div class="inner-title flex items-end h-full">
-      <app-main-heading class="mb-[31px]" [heading]="path()"></app-main-heading>
+      <app-main-heading class="mb-[31px]" [heading]="path"></app-main-heading>
     </div>
   </div>
   <div class="overlay absolute inset-0 bg-black opacity-60"></div>

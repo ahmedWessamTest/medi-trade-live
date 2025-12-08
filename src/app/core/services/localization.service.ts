@@ -24,7 +24,7 @@ export class LocalizationService {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         const routeLang =
-          this.route.snapshot.firstChild?.paramMap.get('lang') || 'ar';
+          this.route.snapshot.firstChild?.paramMap.get('lang') || 'en';
 
         this.selectedLanguage$.next(routeLang);
         this.isArabic$.next(routeLang === 'ar');

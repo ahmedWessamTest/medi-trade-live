@@ -68,40 +68,38 @@ export class BlogId {
     });
   }
 
-  blogsData = signal<IBlog | null>(null);
+  blogsData!: IBlog;
 
   ngOnInit() {
-  // دمج تغييرات اللغة والـ route params
-  this.route.params
-    .pipe(
-      switchMap((params) => {
-        this.slug = params['slug']; // حدث الـ slug
-        return this.languageService.getLanguage(); // ارجع Observable اللغة
-      }),
-      switchMap((lang) => this.blogService.getBlogBySlug(this.slug, lang)),
-      takeUntil(this.destroy$)
-    )
-    .subscribe((res) => {
-      this.blogsData.set(res);
-      this.isLoading.set(false);
-      this.validateAndRedirectUrl();
-      this.separatedSeoTags.getSeoTagsDirect(
-        this.blogsData()?.article.seo_tags ?? {} as SeoITags,
-        this.blogsData()?.article.image_url ?? '',
-        this.blogsData()?.article.slug ?? ''
-      );
-    });
-}
+    this.getSlug();
 
+    this.languageService
+      .getLanguage()
+      .pipe(
+        switchMap((lang) => this.blogService.getBlogBySlug(this.slug, lang)),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((res) => {
+        this.blogsData = res;
+        this.isLoading.set(false);
+        // Validate and redirect if URL doesn't match the correct language-slug combination
+        this.validateAndRedirectUrl();
+        // Handle SEO
+        this.separatedSeoTags.getSeoTagsDirect(
+          this.blogsData.article.seo_tags,
+          this.blogsData.article.image_url,
+          this.blogsData.article.slug
+        );
+      });
+  }
 
-  openPopup(event: MouseEvent, url: string | null | undefined) {
+  openPopup(event: MouseEvent, url: string) {
     event.preventDefault();
 
     const options =
       'height=500,width=600,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes';
-if(url) {
-  window.open(url, 'share-popup', options);
-}
+
+    window.open(url, 'share-popup', options);
   }
 
   /**
@@ -109,35 +107,51 @@ if(url) {
    * and redirects to the proper URL if there's a mismatch to avoid duplicate content
    */
   private validateAndRedirectUrl(): void {
-  if (!this.isBrowser || !this.blogsData()) return;
+    if (!this.isBrowser || !this.blogsData) return;
 
-  const currentLang = this.languageService.getCurrentLanguage();
-  const currentSlugDecoded = decodeSlugFromUrl(this.slug);
-  const expectedSlug = this.blogsData()?.article.slug ?? '';
-  const otherSlug = this.blogsData()?.article.other_slug ?? '';
+    const currentLang = this.languageService.getCurrentLanguage();
+    const currentSlug = this.slug;
+    const currentSlugDecoded = decodeSlugFromUrl(currentSlug);
+    const expectedSlug = this.blogsData.article.slug;
+    const otherSlug = this.blogsData.article.other_slug;
 
-  const arabicRegex = /[\u0600-\u06FF]/;
-  const isCurrentSlugArabic = arabicRegex.test(currentSlugDecoded);
-  const isExpectedSlugArabic = arabicRegex.test(expectedSlug);
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const isCurrentSlugArabic = arabicRegex.test(currentSlugDecoded);
+    const isExpectedSlugArabic = arabicRegex.test(expectedSlug);
 
-  const shouldRedirect =
-    (currentLang === 'ar' && !isCurrentSlugArabic && isExpectedSlugArabic) ||
-    (currentLang === 'en' && isCurrentSlugArabic && !isExpectedSlugArabic) ||
-    currentSlugDecoded !== expectedSlug;
+    // Check if current URL has the wrong language-slug combination
+    const shouldRedirect =
+      // Case 1: Current language is Arabic but slug is English
+      (currentLang === 'ar' && !isCurrentSlugArabic && isExpectedSlugArabic) ||
+      // Case 2: Current language is English but slug is Arabic
+      (currentLang === 'en' && isCurrentSlugArabic && !isExpectedSlugArabic) ||
+      // Case 3: Slug doesn't match the expected slug for current language
+      currentSlugDecoded !== expectedSlug;
 
-  if (shouldRedirect) {
-    let correctSlug = expectedSlug;
-    const isOtherSlugArabic = arabicRegex.test(otherSlug);
-    if (currentLang === 'ar' && isOtherSlugArabic) correctSlug = otherSlug;
-    if (currentLang === 'en' && !isOtherSlugArabic) correctSlug = otherSlug;
+    if (shouldRedirect) {
+      // Determine the correct slug based on current language
+      let correctSlug: string;
 
-    // منع إعادة التوجيه لو المستخدم رايح للـ home
-    if (this.router.url.includes('/blogs')) {
+      if (currentLang === 'ar' && isExpectedSlugArabic) {
+        correctSlug = expectedSlug;
+      } else if (currentLang === 'en' && !isExpectedSlugArabic) {
+        correctSlug = expectedSlug;
+      } else {
+        // Use other_slug if it matches the current language
+        const isOtherSlugArabic = arabicRegex.test(otherSlug);
+        if (currentLang === 'ar' && isOtherSlugArabic) {
+          correctSlug = otherSlug;
+        } else if (currentLang === 'en' && !isOtherSlugArabic) {
+          correctSlug = otherSlug;
+        } else {
+          correctSlug = expectedSlug;
+        }
+      }
+
+      // Navigate to the correct URL
       this.router.navigate(['/', currentLang, 'blogs', correctSlug], {
-        replaceUrl: true,
+        replaceUrl: true, // Replace current URL in history to avoid back button issues
       });
     }
   }
 }
-
-} 

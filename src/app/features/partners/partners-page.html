@@ -2,6 +2,7 @@
   <!-- banner -->
   @if(!isLoading()) {
   <app-banner [path]="'partners-title' | translate" [image]="partnersData().banner" />
+
   } @else {
   <app-banner-skeleton />
   }

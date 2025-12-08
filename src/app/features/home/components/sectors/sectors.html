@@ -9,20 +9,20 @@
           </h4>
           <div
             class="editor text-secondary text-sub-title text-justify leading-8 pb-4 lg:pb-1 max-h-[130px] overflow-y-auto px-1"
-            [innerHTML]="sectorsData().sectors_body"
+            [innerHTML]="sectorsData?.sectors_body"
           ></div>
         </div>
 
         <!-- Bottom Two Images -->
         <div class="flex gap-4">
           <a
-            [routerLink]="['sectors', sectorsData()?.sectors[3].slug]"
+            [routerLink]="['sectors', sectorsData.sectors[3].slug]"
             class="relative w-1/2 overflow-hidden rounded-lg"
           >
             <figure class="w-full h-[268px]">
               <img
-                [ngSrc]="sectorsData().sectors[3]?.image_url"
-                [alt]="sectorsData().sectors[3].meta?.image_alt"
+                [ngSrc]="sectorsData.sectors[3]?.image_url"
+                [alt]="sectorsData.sectors[3].meta?.image_alt"
                 loading="lazy"
                 decoding="async"
                 height="268"
@@ -31,28 +31,28 @@
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
                 <p class="text-white font-bold">
-                  {{ sectorsData().sectors[3]?.title }}
+                  {{ sectorsData.sectors[3]?.title }}
                 </p>
               </div>
             </figure>
           </a>
           <a
             class="relative w-1/2 overflow-hidden rounded-lg"
-            [routerLink]="['sectors', sectorsData().sectors[4].slug]"
+            [routerLink]="['sectors', sectorsData.sectors[4].slug]"
           >
             <figure class="w-full h-[268px]">
               <img
               height="268"
                 width="300"
-                [ngSrc]="sectorsData().sectors[4]?.image_url"
-                [alt]="sectorsData().sectors[4].meta?.image_alt"
+                [ngSrc]="sectorsData.sectors[4]?.image_url"
+                [alt]="sectorsData.sectors[4].meta?.image_alt"
                 loading="lazy"
                 decoding="async"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
                 <p class="text-white font-bold">
-                  {{ sectorsData().sectors[4]?.title }}
+                  {{ sectorsData.sectors[4]?.title }}
                 </p>
               </div>
             </figure>
@@ -65,42 +65,42 @@
         <div class="relative flex justify-center gap-x-[11px]">
           <a
             class="relative w-1/2 overflow-hidden rounded-lg"
-            [routerLink]="['sectors', sectorsData().sectors[0].slug]"
+            [routerLink]="['sectors', sectorsData.sectors[0].slug]"
           >
             <figure class="w-full h-[268px]">
               <img
               height="268"
                 width="300"
-                [ngSrc]="sectorsData().sectors[0]?.image_url"
-                [alt]="sectorsData().sectors[0].meta?.image_alt"
+                [ngSrc]="sectorsData.sectors[0]?.image_url"
+                [alt]="sectorsData.sectors[0].meta?.image_alt"
                 loading="lazy"
                 decoding="async"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
                 <p class="text-white font-bold">
-                  {{ sectorsData().sectors[0]?.title }}
+                  {{ sectorsData.sectors[0]?.title }}
                 </p>
               </div>
             </figure>
           </a>
           <a
             class="relative w-1/2 overflow-hidden rounded-lg"
-            [routerLink]="['sectors', sectorsData().sectors[1].slug]"
+            [routerLink]="['sectors', sectorsData.sectors[1].slug]"
           >
             <figure class="w-full h-[268px]">
               <img
               height="268"
                 width="300"
-                [ngSrc]="sectorsData().sectors[1]?.image_url"
-                [alt]="sectorsData().sectors[1].meta?.image_alt"
+                [ngSrc]="sectorsData.sectors[1]?.image_url"
+                [alt]="sectorsData.sectors[1].meta?.image_alt"
                 loading="lazy"
                 decoding="sync"
                 class="w-full h-[268px] object-cover"
               />
               <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
                 <p class="text-white font-bold">
-                  {{ sectorsData().sectors[1]?.title }}
+                  {{ sectorsData.sectors[1]?.title }}
                 </p>
               </div>
             </figure>
@@ -108,20 +108,20 @@
         </div>
 
         <!-- Full-width Image -->
-        <a class="w-full" [routerLink]="['sectors', sectorsData().sectors[2].slug]">
+        <a class="w-full" [routerLink]="['sectors', sectorsData.sectors[2].slug]">
           <figure class="relative w-full overflow-hidden rounded-lg mt-[20px]">
             <img
             height="268"
                 width="300"
-              [ngSrc]="sectorsData().sectors[2]?.image_url"
-              [alt]="sectorsData().sectors[2].meta?.image_alt"
+              [ngSrc]="sectorsData.sectors[2]?.image_url"
+              [alt]="sectorsData.sectors[2].meta?.image_alt"
               loading="lazy"
               decoding="async"
               class="w-full h-[268px] object-cover"
             />
             <div class="overlay absolute inset-0 items-center justify-center bg-[#000000B2]">
               <p class="text-white font-bold">
-                {{ sectorsData().sectors[2]?.title }}
+                {{ sectorsData.sectors[2]?.title }}
               </p>
             </div>
           </figure>

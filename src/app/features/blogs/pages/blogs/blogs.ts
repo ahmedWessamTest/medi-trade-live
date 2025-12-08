@@ -1,4 +1,3 @@
-import { SeoITags } from './../../../../core/interface/common';
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -44,7 +43,7 @@ export class Blogs implements OnInit, OnDestroy {
 
   isLoading = signal<boolean>(true);
 
-  blogsData = signal<IBlogs | null>(null);
+  blogsData!: IBlogs;
 
   currentPage = signal<number>(1);
 
@@ -72,11 +71,11 @@ export class Blogs implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((res) => {
-        this.blogsData.set(res);
+        this.blogsData = res;
         this.isLoading.set(false);
         this.separatedSeoTags.getSeoTagsDirect(
-          this.blogsData()?.seo_tags ?? {} as SeoITags,
-          this.blogsData()?.banner_image ?? '',
+          this.blogsData.seo_tags,
+          this.blogsData.banner_image,
           'blogs'
         );
       });
@@ -91,7 +90,7 @@ export class Blogs implements OnInit, OnDestroy {
         switchMap((lang) => this.blogService.getBlogs(lang, this.currentPage(), this.searchTerm))
       )
       .subscribe((res) => {
-        this.blogsData.set(res);
+        this.blogsData = res;
         this.currentPage.set(res.meta.current_page);
         this.isLoading.set(false);
       });

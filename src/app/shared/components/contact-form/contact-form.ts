@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, signal, PLATFORM_ID, HostListener, input } from '@angular/core';
+import { Component, inject, Input, signal, PLATFORM_ID, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactUsService } from '@core/services/contact-us.service';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './contact-form.css',
 })
 export class ContactForm {
-  contactUsFormImage = input<string>('');
+  @Input({ required: true }) contactUsFormImage: string = '';
   private _PLATFORM_ID = inject(PLATFORM_ID);
   width = signal<number>(isPlatformBrowser(this._PLATFORM_ID) ? window.screen.width : 0);
   contactUsService = inject(ContactUsService);

@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Sector } from './../../interface/home';
@@ -15,6 +15,6 @@ export interface sectorData {
   styleUrl: './sectors.css',
 })
 export class SectorsSection {
-  sectorsData = input<any>();
-  bgColor =  input<boolean>(false);
+  @Input({ required: true }) sectorsData!: any;
+  @Input({ required: true }) bgColor!: boolean;
 }

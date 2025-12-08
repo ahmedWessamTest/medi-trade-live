@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { WhyReason } from '@features/home/interface/home';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,6 +11,6 @@ import { CardsComponent } from './components/card/cards.component';
   styleUrl: './why-us.css',
 })
 export class WhyUs {
-  whyData  = input<string>('');
-  whyReasons =  input<WhyReason[]>([]);
+  @Input({ required: true }) whyData: string = '';
+  @Input({ required: true }) whyReasons: WhyReason[] = [];
 }

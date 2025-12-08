@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-skeleton-loader-media',
@@ -7,10 +7,10 @@ import { Component, input, Input } from '@angular/core';
   styleUrl: './skeleton-loader-media.component.css',
 })
 export class SkeletonLoaderMediaComponent {
-  itemCount = input<number>(4);
-  haveTransform = input<boolean>(true);
+  @Input() itemCount: number = 4;
+  @Input({ required: true }) haveTransform: boolean = true;
 
   get skeletonItems(): number[] {
-    return Array.from({ length: this.itemCount() }, (_, i) => i + 1);
+    return Array.from({ length: this.itemCount }, (_, i) => i + 1);
   }
 }

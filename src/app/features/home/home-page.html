@@ -1,21 +1,21 @@
 <section>
   <!-- Hero -->
   @if (!isLoading()) {
-  <app-hero [heroData]="homeData()?.hero" />
+  <app-hero [heroData]="homeData.hero" />
   } @else {
   <app-dummy-skeleton-loader />
   }
 
   <!-- About -->
   @if(!isLoading()) {
-  <app-about [aboutData]="homeData()?.about" />
+  <app-about [aboutData]="homeData.about" />
   } @else {
   <app-above-hold-skeleton />
   }
 
   <!-- ISO -->
-  @if(!isLoading() ) {
-  <app-iso [isoData]="homeData()?.iso ?? null" />
+  @if(!isLoading()) {
+  <app-iso [isoData]="homeData.iso" />
   } @else {
   <app-iso-skeleton-loader />
   }
@@ -33,14 +33,14 @@
 
   <!-- Why Us -->
   @if(!isLoading()) {
-  <app-why-us [whyData]="homeData()?.why ?? ''" [whyReasons]="homeData()?.whyReasons ?? []" />
+  <app-why-us [whyData]="homeData.why" [whyReasons]="homeData.whyReasons" />
   } @else {
   <app-why-us-skeleton-loader />
   }
 
   <!-- Partners -->
   @defer(on idle) { @if(!isLoading()) {
-  <app-partners [partnersData]="homeData()?.partnersCategories ?? []" />
+  <app-partners [partnersData]="homeData.partnersCategories" />
   } }@placeholder {
   <app-partners-skeleton [itemCount]="4" />
   }
@@ -49,13 +49,13 @@
 
   <!-- Media -->
   @if(!isLoading()) {
-  <app-media [mediaData]="homeData()?.media ?? []" />
+  <app-media [mediaData]="homeData.media" />
   } @else {
   <app-skeleton-loader-media [itemCount]="4" [haveTransform]="true" />
   }
   <!-- Blog -->
   @if(!isLoading()) {
-  <app-blog [blogData]="homeData()?.articles ?? []">
+  <app-blog [blogData]="homeData.articles">
     <h4 class="mb-[46px] text-main-heading font-bold text-center">
       {{ 'blog.title' | translate }}
     </h4>
@@ -65,7 +65,7 @@
   }
   <!-- Contact Form -->
   @if(!isLoading()) {
-  <app-contact-form [contactUsFormImage]="homeData()?.cotactImage ?? ''" />
+  <app-contact-form [contactUsFormImage]="homeData.cotactImage" />
   } @else {
   <app-contact-us-form-skeletonloader />
   }

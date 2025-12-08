@@ -5,10 +5,10 @@
       <img src="/images/bg-overlay.webp" loading="lazy" decoding="async" alt="media-bg" class="w-full h-full" />
     </span>
   </h4>
-  @if (mediaData()) {
+  @if (mediaData) {
   <div class="container">
     <div class="grid grid-cols-12 gap-4">
-      @for (media of mediaData(); track media.position;) {
+      @for (media of mediaData; track media.position;) {
       <div class="col-span-12 lg:col-span-3 relative">
         <figure
           [class]="{

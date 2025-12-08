@@ -154,13 +154,13 @@
       </div>
 
       <div class="col-span-12 lg:col-span-6">
-        @if(contactUsFormImage()) {
+        @if(contactUsFormImage) {
         <figure class="w-full relative rounded-2xl">
           <img
             loading="lazy"
             decoding="async"
             class="w-full h-full rounded-2xl overflow-hidden"
-            [src]="contactUsFormImage()"
+            [src]="contactUsFormImage"
             alt="Contact Us Illustration"
           />
           <div class="shape-image hidden 2xl:block absolute end-[-34px]"></div>

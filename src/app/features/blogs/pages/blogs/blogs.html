@@ -1,6 +1,6 @@
 <section>
   @if(!isLoading()){
-  <app-banner [path]="'navbar.blogs' | translate" [image]="blogsData()?.banner_image ?? ''"></app-banner>
+  <app-banner [path]="'navbar.blogs' | translate" [image]="blogsData.banner_image"></app-banner>
   } @else {
   <app-banner-skeleton />
   }
@@ -33,9 +33,9 @@
   </div>
 
   <!-- Blog -->
-  @if(!isLoading()) { @if(blogsData()?.data?.length) {
+  @if(!isLoading()) { @if(blogsData.data.length) {
 
-  <app-blog [blogData]="blogsData()?.data" />
+  <app-blog [blogData]="blogsData.data" />
   <!-- Pagination Controls - Always reserve space -->
   <div class="flex justify-center mt-8 min-h-[60px]">
     <div class="custom-pagination flex items-center gap-2 rtl:flex-row-reverse">
@@ -43,8 +43,8 @@
       <button
         [routerLink]="['/', currentLang$ | async, 'blogs']"
         [queryParams]="{ page: currentPage() - 1 }"
-        [disabled]="!blogsData()?.links?.prev"
-        [class.opacity-50]="!blogsData()?.links?.prev"
+        [disabled]="!blogsData.links.prev"
+        [class.opacity-50]="!blogsData.links.prev"
         class="pagination-button px-[10px] pb-[1px] bg-[#D9D9D9] rounded-[10px] font-medium text-[20px] text-black hover:bg-gray-300 disabled:cursor-not-allowed border-[1px] border-[#B4B4B4]"
       >
         {{ 'prev' | translate }}
@@ -52,19 +52,19 @@
 
       <!-- Page Numbers -->
       <div class="flex gap-2">
-        @for (link of blogsData()?.meta?.links; track link.label) { @if (link.page) {
+        @for (link of blogsData.meta.links; track link.label) { @if (link.page) {
         <a
           [routerLink]="['/', currentLang$ | async, 'blogs']"
-          [queryParams]="{ page: link?.page }"
+          [queryParams]="{ page: link.page }"
           [class]="{
-            'bg-[#1976AC]': link?.active,
-            'text-white': link?.active,
-            'border-[#1976AC]': link?.active,
-            'border-[#A7A0A0]': !link?.active
+            'bg-[#1976AC]': link.active,
+            'text-white': link.active,
+            'border-[#1976AC]': link.active,
+            'border-[#A7A0A0]': !link.active
           }"
           class="cursor-pointer w-[30px] h-[30px] flex items-center justify-center rounded-full text-black border-2 px-[8px] py-[1px]"
         >
-          {{ link?.label }}
+          {{ link.label }}
         </a>
         } }
       </div>
@@ -73,8 +73,8 @@
       <button
         [routerLink]="['/', currentLang$ | async, 'blogs']"
         [queryParams]="{ page: currentPage() + 1 }"
-        [disabled]="!blogsData()?.links?.next"
-        [class.opacity-50]="!blogsData()?.links?.next"
+        [disabled]="!blogsData.links.next"
+        [class.opacity-50]="!blogsData.links.next"
         class="pagination-button px-[10px] pb-[1px] bg-[#D9D9D9] rounded-[10px] font-medium text-[20px] text-black hover:bg-gray-300 disabled:cursor-not-allowed border-[1px] border-[#B4B4B4]"
       >
         {{ 'next' | translate }}
@@ -88,11 +88,11 @@
     </p>
   </div>
   } } @else {
-  <app-skeleton-loader-media [itemCount]="blogsData()?.data?.length ?? 4" [haveTransform]="false" />
+  <app-skeleton-loader-media [itemCount]="blogsData.data.length || 4" [haveTransform]="false" />
   }
   <!-- Contact Form -->
   @if(!isLoading()) {
-  <app-contact-form [contactUsFormImage]="blogsData()?.contact_image ?? ''"> </app-contact-form>
+  <app-contact-form [contactUsFormImage]="blogsData.contact_image"> </app-contact-form>
   } @else {
   <app-contact-us-form-skeletonloader />
   }

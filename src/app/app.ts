@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Data } from '@core/interface/contact-us';
 import { ContactUsService } from '@core/services/contact-us.service';
 import { LocalizationService } from '@core/services/localization.service';
@@ -23,7 +23,7 @@ export class App {
 
   private currentLang$ = inject(LocalizationService).getLanguage();
 
-  contactUsData = signal<Data | null>(null);
+  contactUsData: Data = {} as Data;
 
   ngOnInit(): void {
     this.loadContactUsData();
@@ -36,7 +36,7 @@ export class App {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (res) => {
-            this.contactUsData.set(res.data);
+            this.contactUsData = res.data;
           },
         });
     });
