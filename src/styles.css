@@ -13,8 +13,7 @@
 @layer base {
   html,
   body {
-    font-family: 'Cairo', sans-serif;
-    font-display: swap;
+    font-family: "Almarai", sans-serif;
     font-weight: 500;
     font-size: 18px;
   }
