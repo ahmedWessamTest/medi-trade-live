@@ -1,6 +1,6 @@
 <section>
   <!-- Hero -->
-  @if (!isLoading() && homeData) {
+  @if (!isLoading() ) {
   <app-hero [heroData]="homeData.hero" />
   } @else {
   <app-dummy-skeleton-loader />
