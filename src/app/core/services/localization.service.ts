@@ -9,7 +9,7 @@ import { BehaviorSubject, filter } from 'rxjs';
   providedIn: 'root',
 })
 export class LocalizationService {
-  private selectedLanguage$ = new BehaviorSubject<string>('en');
+  private selectedLanguage$ = new BehaviorSubject<string>('ar');
   private isArabic$ = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -24,7 +24,7 @@ export class LocalizationService {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         const routeLang =
-          this.route.snapshot.firstChild?.paramMap.get('lang') || 'en';
+          this.route.snapshot.firstChild?.paramMap.get('lang') || 'ar';
 
         this.selectedLanguage$.next(routeLang);
         this.isArabic$.next(routeLang === 'ar');

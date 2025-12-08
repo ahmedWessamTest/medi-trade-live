@@ -42,11 +42,9 @@ export class BlogId {
 
   private isBrowser = isPlatformBrowser(this.platformId);
 
-  private translate = inject(TranslateService);
 
   private languageService = inject(LocalizationService);
 
-  private seoHelper = inject(SEOHelperService);
 
   private destroy$ = new Subject<void>();
 
