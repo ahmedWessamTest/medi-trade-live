@@ -33,7 +33,10 @@
 @layer base {
   html,
   body {
-    font-family: 'Cairo', Tahoma, Arial,sans-serif;
+    font-family: "Alexandria", sans-serif;
+    @media screen and (width > 768px) {
+      font-family: 'Cairo', Tahoma, Arial,sans-serif;
+    }
     font-weight: 500;
     font-size: 18px;
   }
