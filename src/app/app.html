@@ -4,8 +4,8 @@
 <app-skeleton-navbar />
 }
 <app-main-layout />
-<app-footer [contactUsData]="contactUsData" />
-<app-floating-whatsapp [whatsappNumber]="contactUsData.whatsapp_number" />
+<app-footer [contactUsData]="contactUsData()" />
+<app-floating-whatsapp [whatsappNumber]="contactUsData()?.whatsapp_number ?? ''" />
 
 <ngx-spinner
   bdColor="rgba(0,0,0,0.8)"

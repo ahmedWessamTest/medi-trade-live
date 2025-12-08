@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Data } from '@core/interface/contact-us';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { LocalizationService } from '../../core/services/localization.service';
   styleUrl: './footer.css',
 })
 export class Footer {
-  @Input({ required: true }) contactUsData: Data = {} as Data;
+  contactUsData = input<Data | null>(null);
 
   private languageService = inject(LocalizationService);
 

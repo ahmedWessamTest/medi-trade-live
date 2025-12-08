@@ -55,7 +55,13 @@
           },
           "configurations": {
             "production": {
-              "optimization": true,
+              "inlineStyleLanguage": "css",
+              "optimization": {
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                }
+              },
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,

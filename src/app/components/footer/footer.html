@@ -1,3 +1,4 @@
+
 <footer class="relative bg-image">
   <div class="relative z-10">
     <!-- Footer Area End -->
@@ -98,52 +99,52 @@
                   class="rounded-[15px] border border-[#A6A6A600] shadow-md p-2 flex items-center gap-2"
                 >
                   <img loading="lazy" decoding="async" class="127px" src="/images/footer/map.webp" alt="map" />
-                  <a target="_blank" [href]="contactUsData.map_url" class="text-[#747474]">
-                    {{ contactUsData.address }}
+                  <a target="_blank" [href]="contactUsData()?.map_url" class="text-[#747474]">
+                    {{ contactUsData()?.address }}
                   </a>
                 </li>
-                @if (contactUsData.working_hours) {
+                @if (contactUsData()?.working_hours) {
                 <li>
                   <a class="text-[##E30513]">
                     {{ 'working-hours' | translate }}:
-                    {{ contactUsData.working_hours }}
+                    {{ contactUsData()?.working_hours }}
                   </a>
                 </li>
                 }
 
                 <li>
                   <a
-                    [href]="'tel:+2' + contactUsData.phone_number"
+                    [href]="'tel:+2' + contactUsData()?.phone_number"
                     class="text-[#747474] flex items-center gap-2"
                   >
                     <img loading="lazy" decoding="async" src="/images/footer/Ringing.png" alt="ringing" />
                     <span dir="ltr">
-                      +2{{ contactUsData.phone_number }}
+                      +2{{ contactUsData()?.phone_number }}
                     </span>
                   </a>
                 </li>
 
                 <li>
                   <a
-                    [href]="'https://api.whatsapp.com/send?phone=2' + contactUsData.whatsapp_number"
+                    [href]="'https://api.whatsapp.com/send?phone=2' + contactUsData()?.whatsapp_number"
                     target="_blank"
                     class="text-[#747474] flex items-center gap-2"
                   >
                     <img loading="lazy" decoding="async" src="/images/footer/WhatsApp.png" alt="whatsapp" />
                     <span dir="ltr">
-                      +2{{ contactUsData.whatsapp_number }}
+                      +2{{ contactUsData()?.whatsapp_number }}
                     </span>
                   </a>
                 </li>
                 <li>
                   <a
                     class="text-[#747474] flex items-center gap-2"
-                    href="mailto:{{ contactUsData.email }}"
+                    href="mailto:{{ contactUsData()?.email }}"
                     target="_blank"
                   >
                     <i class="fa-solid fa-envelope text-black"></i>
 
-                    {{ contactUsData.email }}
+                    {{ contactUsData()?.email }}
                   </a>
                 </li>
               </ul>
@@ -164,10 +165,10 @@
       <div class="container px-4 relative z-10">
         <div class="flex gap-0 justify-start mb-[35px]">
           <ul class="flex items-center gap-x-2">
-            @if (contactUsData.facebook_url && contactUsData.facebook_url !== 'null') {
+            @if (contactUsData()?.facebook_url && contactUsData()?.facebook_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.facebook_url"
+                [href]="contactUsData()?.facebook_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -180,10 +181,10 @@
                 <span class="sr-only">Facebook</span>
               </a>
             </li>
-            } @if (contactUsData.linkedin_url && contactUsData.linkedin_url !== 'null') {
+            } @if (contactUsData()?.linkedin_url && contactUsData()?.linkedin_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.linkedin_url"
+                [href]="contactUsData()?.linkedin_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -196,10 +197,10 @@
                 <span class="sr-only">LinkedIn</span>
               </a>
             </li>
-            } @if (contactUsData.instagram_url && contactUsData.instagram_url !== 'null') {
+            } @if (contactUsData()?.instagram_url && contactUsData()?.instagram_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.instagram_url"
+                [href]="contactUsData()?.instagram_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -212,10 +213,10 @@
                 <span class="sr-only">Instagram</span>
               </a>
             </li>
-            } @if (contactUsData.youtube_url && contactUsData.youtube_url !== 'null') {
+            } @if (contactUsData()?.youtube_url && contactUsData()?.youtube_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.youtube_url"
+                [href]="contactUsData()?.youtube_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -231,10 +232,10 @@
             }
           </ul>
           <ul class="flex items-center gap-x-2">
-            @if (contactUsData.x_url && contactUsData.x_url !== 'null') {
+            @if (contactUsData()?.x_url && contactUsData()?.x_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.x_url"
+                [href]="contactUsData()?.x_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -247,10 +248,10 @@
                 <span class="sr-only">Twitter</span>
               </a>
             </li>
-            } @if (contactUsData.snapchat_url && contactUsData.snapchat_url !== 'null') {
+            } @if (contactUsData()?.snapchat_url && contactUsData()?.snapchat_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.snapchat_url"
+                [href]="contactUsData()?.snapchat_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -263,10 +264,10 @@
                 <span class="sr-only">Snapchat</span>
               </a>
             </li>
-            } @if (contactUsData.telegram_url && contactUsData.telegram_url !== 'null') {
+            } @if (contactUsData()?.telegram_url && contactUsData()?.telegram_url !== 'null') {
             <li>
               <a
-                [href]="contactUsData.telegram_url"
+                [href]="contactUsData()?.telegram_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >
@@ -279,10 +280,10 @@
                 <span class="sr-only">Telegram</span>
               </a>
             </li>
-            } @if (contactUsData.tiktok_url && contactUsData.tiktok_url !== 'null' ) {
+            } @if (contactUsData()?.tiktok_url && contactUsData()?.tiktok_url !== 'null' ) {
             <li>
               <a
-                [href]="contactUsData.tiktok_url"
+                [href]="contactUsData()?.tiktok_url"
                 target="_blank"
                 class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors"
               >

@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, computed, inject, Input, signal } from '@angular/core';
+import { Component, computed, inject, input, Input, signal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { IPartnersCategory } from '@features/home/interface/home';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -23,7 +23,7 @@ export class Partners {
     this.langSubscription?.unsubscribe();
   }
 
-  @Input({ required: true }) partnersData: IPartnersCategory[] = [];
+  partnersData = input<IPartnersCategory[]>([]);
 
   private languageService = inject(LocalizationService);
 

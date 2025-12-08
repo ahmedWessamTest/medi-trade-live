@@ -2,15 +2,15 @@
   <ng-content></ng-content>
   <div class="container">
     <div class="grid grid-cols-12 gap-4">
-      @for (article of blogData; track article.slug;) {
+      @for (article of blogData(); track article?.slug;) {
       <div class="col-span-12 lg:col-span-4">
         <div class="blog bg-[#F2F2F2] rounded-2xl p-4">
-          <a [routerLink]="['/', currentLang$ | async, 'blogs', article.slug]">
+          <a [routerLink]="['/', currentLang$ | async, 'blogs', article?.slug]">
             <figure class="h-[304px] rounded-[15px] overflow-hidden">
               <img
                 loading="lazy"
                 decoding="async"
-                [src]="article.image_url"
+                [src]="article?.image_url"
                 alt="article-image"
                 height="304"
                 width="385"
@@ -18,19 +18,19 @@
               />
             </figure>
             <figcaption
-              [title]="article.title"
+              [title]="article?.title"
               class="text-black font-semibold text-sub-title leading-[45px] line-clamp-1"
             >
-              {{ article.title | translate }}
+              {{ article?.title | translate }}
             </figcaption>
           </a>
 
           <div
-            [innerHTML]="article.body | customSanitize"
+            [innerHTML]="article?.body | customSanitize"
             class="text-secondary text-[16px] mb-[10px] line-clamp-2 font-medium leading-[26px]"
           ></div>
           <a
-            [routerLink]="['/', currentLang$ | async, 'blogs', article.slug]"
+            [routerLink]="['/', currentLang$ | async, 'blogs', article?.slug]"
             class="text-main underline text-[16px] block text-end font-medium leading-[26px]"
           >
             {{ 'blog.know_more' | translate }}

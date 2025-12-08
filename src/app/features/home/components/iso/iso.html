@@ -1,13 +1,13 @@
-@if (isoData) {
+@if (isoData()) {
 <section class="py-15">
   <div class="container">
     <div class="iso grid w-full xl:gap-x-[86px] grid-cols-12">
       <div class="col-span-12 lg:col-span-9 ">
         <p class="text-black text-main-sub-heading font-semibold leading-[30px] mb-4">
-          {{ isoData.title }}
+          {{ isoData()?.title }}
         </p>
         <div
-          [innerHTML]="isoData.description | customSanitize"
+          [innerHTML]="isoData()?.description | customSanitize"
           class="editor text-black text-sub-title font-medium leading-[50px] "
         ></div>
       </div>
@@ -16,7 +16,7 @@
           <img
             loading="lazy"
             class="cursor-pointer h-full "
-            [src]="isoData.image"
+            [src]="isoData()?.image"
             alt="iso"
             (click)="openModel()"
           />
@@ -34,7 +34,7 @@
   (click)="closeModel()"
 >
   <img
-    [src]="isoData.image"
+    [src]="isoData()?.image"
     alt="Full view"
     class="max-h-[90vh] max-w-[90vw] rounded-lg shadow-lg cursor-pointer"
     (click)="$event.stopPropagation()"

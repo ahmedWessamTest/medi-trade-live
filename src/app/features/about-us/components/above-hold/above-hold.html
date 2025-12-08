@@ -1,27 +1,27 @@
 <section class="pb-11">
   <div class="container">
-    @if (aboutData) {
+    @if (aboutData()) {
     <h2 class="text-sub-title font-bold text-black pb-[31px] pt-[21px]">
-      {{ aboutData.title }}
+      {{ aboutData()?.title }}
     </h2>
 
     <div
-      [innerHTML]="aboutData.small_body | customSanitize"
+      [innerHTML]="aboutData()?.small_body | customSanitize"
       class="text-black text-sub-title font-medium mb-4 editor"
     ></div>
     <div class="about-content">
       <div class="grid w-full gap-y-[30px] grid-cols-12">
         <!-- Left column -->
         <div class="col-span-12 lg:col-span-5 relative">
-          @if(aboutData.image_url) {
+          @if(aboutData()?.image_url) {
           <figure>
             <img
               width="454"
               height="543"
-              [ngSrc]="aboutData.image_url"
+              [ngSrc]="aboutData()?.image_url ?? ''"
               placeholder="blur"
               priority
-              [alt]="aboutData.title | slice : 0 : 50"
+              [alt]="aboutData()?.title | slice : 0 : 50"
             />
           </figure>
           }
@@ -31,7 +31,7 @@
         <div class="col-span-12 lg:col-span-7">
           <div class="content">
             <div
-              [innerHTML]="aboutData.body | customSanitize"
+              [innerHTML]="aboutData()?.body | customSanitize"
               class="editor text-secondary text-sub-title font-medium leading-main mb-[15px]"
             ></div>
           </div>

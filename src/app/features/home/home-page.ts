@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { ApplicationRef, Component, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
 import { AboveHoldSkeleton } from '@features/about-us/components/above-hold-skeleton/above-hold-skeleton';
@@ -24,6 +24,8 @@ import { WhyUsSkeletonLoaderComponent } from './components/why-us/components/why
 import { WhyUs } from './components/why-us/why-us';
 import { Data } from './interface/home';
 import { Home } from './services/home';
+import { isPlatformBrowser } from '@angular/common';
+import { SeoITags } from '@core/interface/common';
 
 @Component({
   selector: 'app-home-page',
@@ -62,14 +64,16 @@ export class HomePage {
   skeletonData!: { title: string; description: string };
 
   homeServices = inject(Home);
-  
+
   currentLang = 'ar';
 
-  homeData!: Data;
+  homeData = signal<Data | null>(null);
 
   sectorData!: sectorData;
 
   isLoading: WritableSignal<boolean> = signal(true);
+private appRef = inject(ApplicationRef);
+private plat = inject(PLATFORM_ID);
 
   ngOnInit(): void {
     this.currentLang$.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((lang) => {
@@ -79,7 +83,7 @@ export class HomePage {
         .subscribe({
           next: (res) => {
             this.currentLang = lang;
-            this.homeData = res.data;
+            this.homeData.set(res.data);
             this.skeletonData = {
               title: res.data.hero.title,
               description: res.data.hero.description,
@@ -90,11 +94,13 @@ export class HomePage {
                 sectors_body: res.data.sectors_body,
               };
             }
-            this.separatedSeoTags.getSeoTagsDirect(
-              this.homeData.seo_tags,
-              '/images/logo.webp',
-              'home'
-            );
+            if(this.homeData()?.seo_tags ){
+              this.separatedSeoTags.getSeoTagsDirect(
+                this.homeData()?.seo_tags ?? {} as SeoITags,
+                '/images/logo.webp',
+                'home'
+              );
+            }
             this.isLoading.set(false);
           },
         });

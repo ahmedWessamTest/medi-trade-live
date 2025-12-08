@@ -107,7 +107,7 @@
   <div
     class="layer-image w-[533px] opacity-10 h-[138px] absolute top-0 rtl:translate-x-[30%] ltr:translate-x-[-30%] z-0"
   >
-    <img src="/images/map.gif" alt="layer-image" class="w-full h-full object-cover" />
+    <img loading="lazy" decoding="async" src="/images/map.gif" alt="layer-image" class="w-full h-full object-cover" />
   </div>
 }
           </div>
@@ -154,13 +154,13 @@
       </div>
 
       <div class="col-span-12 lg:col-span-6">
-        @if(contactUsFormImage) {
+        @if(contactUsFormImage()) {
         <figure class="w-full relative rounded-2xl">
           <img
             loading="lazy"
             decoding="async"
             class="w-full h-full rounded-2xl overflow-hidden"
-            [src]="contactUsFormImage"
+            [src]="contactUsFormImage()"
             alt="Contact Us Illustration"
           />
           <div class="shape-image hidden 2xl:block absolute end-[-34px]"></div>
