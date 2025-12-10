@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  inject,
-  NgZone,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, NgZone, ViewChild } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -21,34 +13,24 @@ export class Map {
   currentLang = 'ar';
 
   constructor() {
-    inject(LocalizationService)
-      .getLanguage()
-      .subscribe((lang) => {
-        this.currentLang = lang;
-      });
+    inject(LocalizationService).getLanguage().subscribe((lang) => {
+      this.currentLang = lang;
+    });
   }
   @ViewChild('mapImage') img!: ElementRef<HTMLImageElement>;
   @HostListener('mouseenter')
-  onMouseEnter() {
-    this._zone.runOutsideAngular(() => {
-      this.toggleFade(`/images/maps/map-${this.currentLang}.webp`);
-    });
-  }
+onMouseEnter() {
+  this._zone.runOutsideAngular(() => {
+    const img = this.img.nativeElement;
+    img.src = `/images/maps/map-${this.currentLang}.webp`;
+  });
+}
 
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this._zone.runOutsideAngular(() => {
-      this.toggleFade('/images/maps/map-solid.webp')
-    });
-  }
- toggleFade(imageSrc:string):void {
-  const img = this.img.nativeElement;
-    img.classList.remove('fade-in');
-      img.classList.add('fade-out');
-      setTimeout(() => {
-        img.src = imageSrc;
-        img.classList.remove('fade-out');
-        img.classList.add('fade-in');
-      }, 300);
-  }
+@HostListener('mouseleave')
+onMouseLeave() {
+  this._zone.runOutsideAngular(() => {
+    const img = this.img.nativeElement;
+    img.src = '/images/maps/map-solid.webp';
+  });
+}
 }
