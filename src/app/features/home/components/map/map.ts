@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, inject, NgZone, ViewChild } from '@angular/core';
+import {  ChangeDetectionStrategy, Component,inject } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -7,9 +7,9 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [TranslatePipe],
   templateUrl: './map.html',
   styleUrl: './map.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class Map {
-  private _zone = inject(NgZone);
   currentLang = 'ar';
 
   constructor() {
@@ -17,20 +17,13 @@ export class Map {
       this.currentLang = lang;
     });
   }
-  @ViewChild('mapImage') img!: ElementRef<HTMLImageElement>;
-  @HostListener('mouseenter')
-onMouseEnter() {
-  this._zone.runOutsideAngular(() => {
-    const img = this.img.nativeElement;
-    img.src = `/images/maps/map-${this.currentLang}.webp`;
-  });
+onMouseEnter(event: MouseEvent) {
+    const img = event.target as HTMLImageElement;
+      img.src = `/images/maps/map-${this.currentLang}.webp`;    
 }
 
-@HostListener('mouseleave')
-onMouseLeave() {
-  this._zone.runOutsideAngular(() => {
-    const img = this.img.nativeElement;
+onMouseLeave(event: MouseEvent) {
+    const img = event.target as HTMLImageElement;
     img.src = '/images/maps/map-solid.webp';
-  });
 }
 }
