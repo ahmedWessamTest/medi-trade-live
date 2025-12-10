@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { WhyReason } from '@features/home/interface/home';
 import { CardSkeletonComponent } from '@shared/components/card/card-skeleton/card-skeleton.component';
 import { CardComponent } from '@shared/components/card/card.component';
@@ -8,6 +8,7 @@ import { CardComponent } from '@shared/components/card/card.component';
   imports: [CardComponent, CardSkeletonComponent],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardsComponent {
   @Input({ required: true }) whyData: WhyReason[] = [];

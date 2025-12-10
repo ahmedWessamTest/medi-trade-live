@@ -1,9 +1,9 @@
 import { AsyncPipe, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Component, ElementRef, HostListener, inject, PLATFORM_ID, signal } from '@angular/core';
+import { Component, ElementRef, inject, NgZone, PLATFORM_ID, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MainBtnComponent } from '@shared/components/main-btn/main-btn.component';
-import { debounceTime, fromEvent, Subscription } from 'rxjs';
+import { debounceTime, fromEvent, Subscription, throttleTime } from 'rxjs';
 import { LocalizationService } from '../../core/services/localization.service';
 
 @Component({
@@ -41,7 +41,6 @@ export class Navbar {
       fontWeight: 'font-medium',
     },
   };
-
   showMenu: boolean = false;
   isMenuOpen = false;
   isRtl = false;
@@ -55,34 +54,37 @@ export class Navbar {
 
   private elementRef = inject(ElementRef);
 
-  private readonly DESKTOP_BREAKPOINT = 1536; // xl breakpoint in Tailwind (in pixels)
+  private zone = inject(NgZone);
 
-  private resizeSubscription?: Subscription;
+  private readonly DESKTOP_BREAKPOINT = 1536;
 
   currentLang$ = this.languageService.getLanguage();
 
   ngOnInit(): void {
-    // Set initial RTL state based on current language
-    this.currentLang$.subscribe((lang) => {
-      this.isRtl = lang === 'ar';
-    });
-
-    // Add resize listener to close mobile menu when screen size changes
-    if (isPlatformBrowser(this.platformId)) {
-      this.resizeSubscription = fromEvent(window, 'resize')
+    this.zone.runOutsideAngular(()=>{
+      fromEvent(window,'scroll').pipe(throttleTime(100,undefined,{trailing:true})).subscribe(()=>{
+        const scrolled = window.scrollY > 100;
+        if(this.isScrolled() !== scrolled) {
+          this.isScrolled.set(scrolled)
+        }
+      })
+      if (isPlatformBrowser(this.platformId)) {
+      fromEvent(window, 'resize')
         .pipe(debounceTime(150))
         .subscribe(() => {
           this.checkScreenWidth();
         });
-
       // Initial screen width check
       this.checkScreenWidth();
     }
+    })
+    this.currentLang$.subscribe((lang) => {
+      this.isRtl = lang === 'ar';
+    });
+    
   }
 
-  @HostListener('window:scroll') onScroll() {
-    this.isScrolled.set(window.scrollY > 100);
-  }
+  
 
   private checkScreenWidth(): void {
     if (window.innerWidth >= this.DESKTOP_BREAKPOINT && this.isMenuOpen) {
@@ -124,7 +126,6 @@ export class Navbar {
   private performLanguageChange(lang: string): void {
     // Close the language menu
     this.closeLanguageMenu();
-    console.log('change lang ');
     // Allow any DOM updates to complete before changing language
     setTimeout(() => {
       const currentUrl = this.router.url;

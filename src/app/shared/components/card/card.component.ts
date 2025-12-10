@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { WhyReason } from '@features/home/interface/home';
 
@@ -8,6 +8,7 @@ import { WhyReason } from '@features/home/interface/home';
   imports: [CustomSanitizePipe, NgOptimizedImage],
   templateUrl: './card.component.html',
   styles: '',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class CardComponent {
   @Input({ required: true }) card: WhyReason = {} as WhyReason;
