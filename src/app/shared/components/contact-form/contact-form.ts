@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, Input, signal, PLATFORM_ID, HostListener } from '@angular/core';
+import { Component, inject, Input, signal, PLATFORM_ID, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactUsService } from '@core/services/contact-us.service';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   imports: [TranslatePipe, ReactiveFormsModule],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ContactForm {
   @Input({ required: true }) contactUsFormImage: string = '';

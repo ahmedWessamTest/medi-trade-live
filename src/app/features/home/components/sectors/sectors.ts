@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Sector } from './../../interface/home';
@@ -13,6 +13,7 @@ export interface sectorData {
   imports: [TranslatePipe, RouterLink,NgOptimizedImage],
   templateUrl: './sectors.html',
   styleUrl: './sectors.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class SectorsSection {
   @Input({ required: true }) sectorsData!: any;

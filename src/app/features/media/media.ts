@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -33,6 +34,8 @@ import { MediaService } from './services/media-service';
   ],
   templateUrl: './media.html',
   styleUrl: './media.css',
+    changeDetection:ChangeDetectionStrategy.OnPush
+
 })
 export class Media implements OnDestroy, OnInit {
   private destroy$ = new Subject<void>();

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
 import { SectorAltSection } from '@features/sectors/components/sector-alt-section/sector-alt-section';
@@ -33,6 +33,8 @@ export interface ICustomSectorData {
   ],
   templateUrl: './sectors.html',
   styleUrl: './sectors.css',
+    changeDetection:ChangeDetectionStrategy.OnPush
+
 })
 export class Sectors {
   private sectorsService = inject(SectorsService);

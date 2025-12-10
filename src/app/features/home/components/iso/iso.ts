@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { ISO } from '@features/home/interface/home';
 import { IsoSkeletonLoaderComponent } from './components/iso-skeleton-loader/iso-skeleton-loader.component';
@@ -8,6 +8,7 @@ import { IsoSkeletonLoaderComponent } from './components/iso-skeleton-loader/iso
   imports: [IsoSkeletonLoaderComponent, CustomSanitizePipe],
   templateUrl: './iso.html',
   styleUrl: './iso.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class Iso {
   @Input({ required: true }) isoData: ISO = {} as ISO;

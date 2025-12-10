@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-skeleton-loader-media',
   imports: [],
   templateUrl: './skeleton-loader-media.component.html',
   styleUrl: './skeleton-loader-media.component.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class SkeletonLoaderMediaComponent {
   @Input() itemCount: number = 4;

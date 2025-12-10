@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IMedia } from '@features/home/interface/home';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MainBtnComponent } from '@shared/components/main-btn/main-btn.component';
@@ -9,6 +9,7 @@ import { SkeletonLoaderMediaComponent } from '@shared/components/skeleton-loader
   imports: [MainBtnComponent, TranslatePipe, SkeletonLoaderMediaComponent],
   templateUrl: './media.html',
   styleUrl: './media.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class Media {
   @Input() mediaData: IMedia[] = [];

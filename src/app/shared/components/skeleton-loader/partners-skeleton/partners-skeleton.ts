@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CardSkeletonComponent } from '../card-skeleton/card-skeleton.component';
 
 @Component({
@@ -6,6 +6,7 @@ import { CardSkeletonComponent } from '../card-skeleton/card-skeleton.component'
   imports: [CardSkeletonComponent],
   templateUrl: './partners-skeleton.html',
   styleUrl: './partners-skeleton.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class PartnersSkeleton {
   @Input({ required: true }) itemCount: number = 4;

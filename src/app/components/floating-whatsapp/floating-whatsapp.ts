@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
   imports: [],
   templateUrl: './floating-whatsapp.html',
   styleUrl: './floating-whatsapp.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FloatingWhatsapp {
   @Input() whatsappNumber: string = '';

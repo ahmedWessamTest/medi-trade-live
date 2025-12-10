@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
 import { AboveHoldSkeleton } from '@features/about-us/components/above-hold-skeleton/above-hold-skeleton';
@@ -51,6 +51,8 @@ import { Home } from './services/home';
   ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
+    changeDetection:ChangeDetectionStrategy.OnPush
+
 })
 export class HomePage {
   private destroy$ = new Subject<void>();

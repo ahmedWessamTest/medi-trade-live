@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Data } from '@core/interface/contact-us';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { LocalizationService } from '../../core/services/localization.service';
   imports: [RouterLink, AsyncPipe, RouterLink, TranslatePipe],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class Footer {
   @Input({ required: true }) contactUsData: Data = {} as Data;

@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Component, ElementRef, inject, NgZone, PLATFORM_ID, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, NgZone, PLATFORM_ID, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MainBtnComponent } from '@shared/components/main-btn/main-btn.component';
@@ -15,9 +15,11 @@ import { LocalizationService } from '../../core/services/localization.service';
     NgOptimizedImage,
     MainBtnComponent,
     RouterLinkActive,
+    
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class Navbar {
   navbarItems = [

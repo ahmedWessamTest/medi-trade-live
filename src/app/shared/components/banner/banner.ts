@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { MainHeading } from '@shared/components/main-heading/main-heading.component';
 
@@ -8,6 +8,7 @@ import { MainHeading } from '@shared/components/main-heading/main-heading.compon
   imports: [MainHeading, NgOptimizedImage],
   templateUrl: './banner.html',
   styleUrl: './banner.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class Banner {
   @Input({ required: true }) path: string = '';

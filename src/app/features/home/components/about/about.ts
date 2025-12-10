@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { IAbout } from '@features/home/interface/home';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [TranslatePipe, CustomSanitizePipe, NgOptimizedImage],
   templateUrl: './about.html',
   styleUrl: './about.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class About {
   @Input({ required: true }) aboutData!: IAbout;

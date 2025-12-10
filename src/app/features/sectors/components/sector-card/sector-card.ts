@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CustomSanitizePipe } from '@core/pipes/custom-sanitize-pipe';
 import { LocalizationService } from '@core/services/localization.service';
@@ -11,6 +11,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [TranslatePipe, RouterLink, CustomSanitizePipe, AsyncPipe],
   templateUrl: './sector-card.html',
   styleUrl: './sector-card.css',
+    changeDetection:ChangeDetectionStrategy.OnPush
+
 })
 export class SectorCard {
   @Input({ required: true }) sectors: ISector[] = [];
