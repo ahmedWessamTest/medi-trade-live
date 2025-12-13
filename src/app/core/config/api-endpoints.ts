@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  BASE_URL: 'https://mshmohm.com/medi-trade-master/api',
+  BASE_URL: 'https://api.meditrade-eg.com/api',
   HOME: 'home',
   ABOUT_US: 'about',
   CONTACT_US: 'contact',
