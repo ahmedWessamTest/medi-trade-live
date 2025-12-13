@@ -24,7 +24,6 @@ export class About {
       if (this.aboutData.tabs.length > 0) {
         this.activeTab = this.aboutData.tabs[0];
         this.activeTab = found; // set default tab here
-        console.log(this.activeTab);
       }
     }
   }

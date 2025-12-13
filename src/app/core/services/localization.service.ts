@@ -70,8 +70,6 @@ export class LocalizationService {
   }
 
   changeLanguage(lang: string, currentUrl: string) {
-    console.log('change lang ', lang);
-    console.log('currentUrl ', currentUrl);
 
     // Remove query parameters if they exist
     const cleanUrl = currentUrl.includes('?')

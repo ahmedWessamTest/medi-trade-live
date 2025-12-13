@@ -67,6 +67,5 @@ export class Hero {
 
     // ✅ Hide skeleton and show video
     this.isLoading = false;
-    console.log('Video is ready to play.');
   }
 }

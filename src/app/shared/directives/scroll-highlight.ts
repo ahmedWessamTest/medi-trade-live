@@ -23,7 +23,6 @@ export class ScrollHighlightDirective implements OnInit, OnDestroy {
 
   private createHighlightOverlay() {
     const container = this.el.nativeElement;
-    console.log('container', container);
 
     // Create overlay element
     this.highlightOverlay = this.renderer.createElement('div');

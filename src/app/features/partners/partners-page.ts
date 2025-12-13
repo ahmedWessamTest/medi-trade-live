@@ -61,7 +61,6 @@ export class PartnersPage implements OnDestroy {
       .subscribe({
         next: (res) => {
           this.partnersData.set(res);
-          console.log(this.partnersData());
           
           this.isLoading.set(false);
           this.separatedSeoTags.getSeoTagsDirect(

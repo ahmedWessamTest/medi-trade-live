@@ -8,8 +8,6 @@ import { SEOHelperService } from './seo-helper.service';
 export class SeparatedSeoTags {
   private seoHelper = inject(SEOHelperService);
   getSeoTagsDirect(seoTags: SeoITags, imageUrl: string, pageName: string) {
-    // / Handle SEO
-    console.log('seoTags', seoTags);
     if (seoTags) {
       const seo: SeoITags = {
         meta_title: seoTags.meta_title,
