@@ -15,7 +15,6 @@ import { LocalizationService } from '../../core/services/localization.service';
     NgOptimizedImage,
     MainBtnComponent,
     RouterLinkActive,
-    
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
