@@ -1,88 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://medi-trade.netlify.app/en</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-
-<url>
-  <loc>https://medi-trade.netlify.app/ar</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/en/about-us</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/en/sectors/grains</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/en/sectors/export</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/en/sectors/livestocks</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/en/sectors/frozens</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/en/sectors/oils</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/about-us</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/sectors/%D8%A7%D9%84%D8%AD%D8%A8%D9%88%D8%A8</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/sectors/%D8%A7%D9%84%D8%AA%D8%B5%D8%AF%D9%8A%D8%B1</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/sectors/%D8%A7%D9%84%D8%AB%D8%B1%D9%88%D8%A9-%D8%A7%D9%84%D8%AD%D9%8A%D9%88%D8%A7%D9%86%D9%8A%D8%A9</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/sectors/%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%AF%D8%A7%D8%AA</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://medi-trade.netlify.app/ar/sectors/%D8%A7%D9%84%D8%B2%D9%8A%D9%88%D8%AA</loc>
-  <lastmod>2025-10-07T08:17:15+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://meditrade-eg.com/</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/about-us</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/partners</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/blogs</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/media</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/contact-us</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%D8%A7%D9%84%D8%AD%D8%A8%D9%88%D8%A8</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%D8%A7%D9%84%D8%AA%D8%B5%D8%AF%D9%8A%D8%B1</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%D8%A7%D9%84%D8%AB%D8%B1%D9%88%D8%A9-%D8%A7%D9%84%D8%AD%D9%8A%D9%88%D8%A7%D9%86%D9%8A%D8%A9</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%AF%D8%A7%D8%AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%D8%A7%D9%84%D8%B2%D9%8A%D9%88%D8%AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/privacy-policy</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/media</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/about-us</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/blogs</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%25D8%25A7%25D9%2584%25D8%25AD%25D8%25A8%25D9%2588%25D8%25A8</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%25D8%25A7%25D9%2584%25D8%25AD%25D8%25A8%25D9%2588%25D8%25A8</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/partners</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/contact-us</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/grains</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/export</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/livestocks</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/frozens</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/oils</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/privacy-policy</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%25D8%25A7%25D9%2584%25D8%25AB%25D8%25B1%25D9%2588%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25AD%25D9%258A%25D9%2588%25D8%25A7%25D9%2586%25D9%258A%25D8%25A9</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%25D8%25A7%25D9%2584%25D8%25AB%25D8%25B1%25D9%2588%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25AD%25D9%258A%25D9%2588%25D8%25A7%25D9%2586%25D9%258A%25D8%25A9</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B5%25D8%25AF%25D9%258A%25D8%25B1</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B5%25D8%25AF%25D9%258A%25D8%25B1</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%25D8%25A7%25D9%2584%25D9%2585%25D8%25AC%25D9%2585%25D8%25AF%25D8%25A7%25D8%25AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%25D8%25A7%25D9%2584%25D9%2585%25D8%25AC%25D9%2585%25D8%25AF%25D8%25A7%25D8%25AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%25D8%25A7%25D9%2584%25D8%25B2%25D9%258A%25D9%2588%25D8%25AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%25D8%25A7%25D9%2584%25D8%25B2%25D9%258A%25D9%2588%25D8%25AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525AD%2525D8%2525A8%2525D9%252588%2525D8%2525A8</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525AD%2525D8%2525A8%2525D9%252588%2525D8%2525A8</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/grains</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/livestocks</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/frozens</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/oils</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525AB%2525D8%2525B1%2525D9%252588%2525D8%2525A9-%2525D8%2525A7%2525D9%252584%2525D8%2525AD%2525D9%25258A%2525D9%252588%2525D8%2525A7%2525D9%252586%2525D9%25258A%2525D8%2525A9</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525AB%2525D8%2525B1%2525D9%252588%2525D8%2525A9-%2525D8%2525A7%2525D9%252584%2525D8%2525AD%2525D9%25258A%2525D9%252588%2525D8%2525A7%2525D9%252586%2525D9%25258A%2525D8%2525A9</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/export</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525AA%2525D8%2525B5%2525D8%2525AF%2525D9%25258A%2525D8%2525B1</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525AA%2525D8%2525B5%2525D8%2525AF%2525D9%25258A%2525D8%2525B1</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525B2%2525D9%25258A%2525D9%252588%2525D8%2525AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%2525D8%2525A7%2525D9%252584%2525D8%2525B2%2525D9%25258A%2525D9%252588%2525D8%2525AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/ar/sectors/%2525D8%2525A7%2525D9%252584%2525D9%252585%2525D8%2525AC%2525D9%252585%2525D8%2525AF%2525D8%2525A7%2525D8%2525AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meditrade-eg.com/en/sectors/%2525D8%2525A7%2525D9%252584%2525D9%252585%2525D8%2525AC%2525D9%252585%2525D8%2525AF%2525D8%2525A7%2525D8%2525AA</loc>
+    <lastmod>2025-12-16</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>

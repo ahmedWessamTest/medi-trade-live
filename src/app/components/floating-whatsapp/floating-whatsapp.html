@@ -1,10 +1,6 @@
 <!-- create heere floating whatsapp  button to call +215-231-7657 -->
 <div
-  class="fixed bottom-4 z-50"
-  [class]="{
-    'left-4': translate === 'ar',
-    'right-4': translate === 'en'
-  }"
+  class="fixed bottom-4 end-4 z-50"
 >
   <a
     [href]="'https://api.whatsapp.com/send?phone=2' + whatsappNumber"
@@ -12,8 +8,10 @@
     class="bg-green-500 text-white rounded-full flex items-center justify-center p-2 md:p-4"
   >
     <img
-      loading="eager"
-      class="w-[30px] h-[30px] md:w-[50px] md:h-[50px]"
+      loading="lazy"
+      decoding="async"
+      fetchpriority="low"
+      class="size-7.5 md:size-12.5"
       src="/images/WhatsApp_icon.webp"
       alt="Whatsapp connect"
     />

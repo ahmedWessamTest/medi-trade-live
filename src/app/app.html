@@ -1,17 +1,14 @@
-@defer(on idle) {
 <app-navbar />
-} @placeholder {
-<app-skeleton-navbar />
-}
+
 <app-main-layout />
 <app-footer [contactUsData]="contactUsData" />
-<app-floating-whatsapp [whatsappNumber]="contactUsData.whatsapp_number" />
+<app-floating-whatsapp [whatsappNumber]="contactUsData?.whatsapp_number ?? ''" />
 
-<ngx-spinner
+<!-- <ngx-spinner
   bdColor="rgba(0,0,0,0.8)"
   size="medium"
   color="#fff"
   type="square-jelly-box"
-  template="<img loading='eager' src='/images/logo.webp' />"
+  template="<img loading='lazy' src='/images/logo.webp' />"
   [fullScreen]="true"
-/>
+/> -->

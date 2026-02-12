@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal, WritableSignal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
 import { AboveHoldSkeleton } from '@features/about-us/components/above-hold-skeleton/above-hold-skeleton';
@@ -60,7 +60,7 @@ export class HomePage {
   private currentLang$ = inject(LocalizationService).getLanguage();
 
   private separatedSeoTags = inject(SeparatedSeoTags);
-
+  private cdr = inject(ChangeDetectorRef)
   skeletonData!: { title: string; description: string };
 
   homeServices = inject(Home);
@@ -82,6 +82,7 @@ export class HomePage {
           next: (res) => {
             this.currentLang = lang;
             this.homeData = res.data;
+            this.cdr.detectChanges()
             this.skeletonData = {
               title: res.data.hero.title,
               description: res.data.hero.description,

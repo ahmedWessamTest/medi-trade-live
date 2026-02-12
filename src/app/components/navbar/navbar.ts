@@ -3,8 +3,10 @@ import { ChangeDetectionStrategy, Component, ElementRef, inject, NgZone, PLATFOR
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MainBtnComponent } from '@shared/components/main-btn/main-btn.component';
-import { debounceTime, fromEvent, Subscription, throttleTime } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, throttleTime } from 'rxjs';
 import { LocalizationService } from '../../core/services/localization.service';
+import { NavbarService } from './services/navbar-service';
+import { SkeletonNavbar } from "@components/skeleton-navbar/skeleton-navbar";
 
 @Component({
   selector: 'app-navbar',
@@ -15,20 +17,22 @@ import { LocalizationService } from '../../core/services/localization.service';
     NgOptimizedImage,
     MainBtnComponent,
     RouterLinkActive,
-  ],
+    SkeletonNavbar
+],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  
 })
 export class Navbar {
-  navbarItems = [
-    { id: 2, name: 'navbar.about', link: 'about-us' },
-    { id: 3, name: 'navbar.partners', link: 'partners' },
-    { id: 4, name: 'navbar.sectors', link: 'sectors' },
-    { id: 5, name: 'navbar.blogs', link: 'blogs' },
-    { id: 6, name: 'navbar.media', link: 'media' },
-    { id: 7, name: 'navbar.contact', link: 'contact-us' },
-  ];
+  navbarItems = signal<any>([
+    { id: 2, name: 'navbar.about', link: 'about-us',type:'link'  },
+    { id: 3, name: 'navbar.partners', link: 'partners',type:'link' },
+    { id: 4, name: 'navbar.sectors', link: 'sectors',type:'dropdown',dropdownData:[] },
+    { id: 5, name: 'navbar.blogs', link: 'blogs',type:'link' },
+    { id: 6, name: 'navbar.media', link: 'media',type:'link' },
+    { id: 7, name: 'navbar.contact', link: 'contact-us',type:'link' },
+  ]);
   baseBtn = {
     text: 'navbar.contact',
     link: 'contact-us',
@@ -38,30 +42,30 @@ export class Navbar {
       textColor: 'text-black',
       borderRadius: 'rounded-[10px]',
       lineHeight: 'line-height-[35px]',
-      padding: 'py-[14px] px-[45px]',
+      padding: '2xl:py-[14px] 2xl:px-[45px] px-[5px] py-1 text-xs 2xl:text-base',
       fontWeight: 'font-medium',
     },
   };
-  showMenu: boolean = false;
-  isMenuOpen = false;
+  showSectors = signal<boolean>(false);
+  showMenu = signal(false);
+  isMenuOpen = signal<boolean>(false);
   isRtl = false;
   isScrolled = signal(false);
 
   private router = inject(Router);
-
+  private NavbarService = inject(NavbarService)
   private languageService = inject(LocalizationService);
 
   private platformId = inject(PLATFORM_ID);
-
   private elementRef = inject(ElementRef);
-
   private zone = inject(NgZone);
-
   private readonly DESKTOP_BREAKPOINT = 1536;
-
+  currentLang = 'ar';
   currentLang$ = this.languageService.getLanguage();
 
   ngOnInit(): void {
+    this.getSectorsDate();
+    if (isPlatformBrowser(this.platformId)) {
     this.zone.runOutsideAngular(()=>{
       fromEvent(window,'scroll').pipe(throttleTime(100,undefined,{trailing:true})).subscribe(()=>{
         const scrolled = window.scrollY > 100;
@@ -69,7 +73,7 @@ export class Navbar {
           this.isScrolled.set(scrolled)
         }
       })
-      if (isPlatformBrowser(this.platformId)) {
+      
       fromEvent(window, 'resize')
         .pipe(debounceTime(150))
         .subscribe(() => {
@@ -77,26 +81,41 @@ export class Navbar {
         });
       // Initial screen width check
       this.checkScreenWidth();
-    }
+    
     })
+  }
     this.currentLang$.subscribe((lang) => {
       this.isRtl = lang === 'ar';
     });
     
   }
 
-  
+  getSectorsDate():void {
+    this.currentLang$.pipe(distinctUntilChanged()).subscribe((lang) => {
+          this.NavbarService
+            .getSectors(lang).subscribe({
+              next: (res) => {
+               this.navbarItems.update(items => items.map((link:any)=>{
+                  if(link.link === 'sectors') {
+                    return {...link,dropdownData:[...res]}
+                  }
+                  return link;
+                }))                
+              },
+            });
+        });
+  }
 
   private checkScreenWidth(): void {
-    if (window.innerWidth >= this.DESKTOP_BREAKPOINT && this.isMenuOpen) {
-      this.isMenuOpen = false;
+    if (window.innerWidth >= this.DESKTOP_BREAKPOINT && this.isMenuOpen()) {
+      this.isMenuOpen.set(false) ;
       document.body.classList.remove('scroll-lock');
     }
   }
 
   changeLang(lang: string): void {
     // If mobile menu is open, close it with animation first
-    if (this.isMenuOpen) {
+    if (this.isMenuOpen()) {
       this.closeMobileMenuWithAnimation(() => {
         this.performLanguageChange(lang);
       });
@@ -136,11 +155,11 @@ export class Navbar {
   }
 
   toggleMenu(): void {
-    this.showMenu = !this.showMenu;
+    this.showMenu.update(prev => !prev);
   }
 
   closeLanguageMenu(): void {
-    this.showMenu = false;
+    this.showMenu.set(false);
   }
 
   /**
@@ -153,14 +172,14 @@ export class Navbar {
     }
 
     if (event.key === 'Escape') {
-      this.showMenu = false;
+      this.showMenu.set(false);
       event.preventDefault();
     }
   }
 
   toggleMobileMenu(): void {
     // If menu is currently closed and we're opening it
-    if (!this.isMenuOpen) {
+    if (!this.isMenuOpen()) {
       this.openMobileMenu();
     } else {
       this.closeMobileMenuWithAnimation();
@@ -171,8 +190,8 @@ export class Navbar {
    * Opens the mobile menu with animation
    */
   private openMobileMenu(): void {
-    this.isMenuOpen = true;
-    this.showMenu = false; // Close language dropdown when opening mobile menu
+    this.isMenuOpen.set(true);
+    this.showMenu.set(false); // Close language dropdown when opening mobile menu
 
     // Prevent body scroll when menu is open
     if (isPlatformBrowser(this.platformId)) {
@@ -207,7 +226,7 @@ export class Navbar {
 
     // After animation completes, hide the menu completely
     setTimeout(() => {
-      this.isMenuOpen = false;
+      this.isMenuOpen.set(false);
       // Restore body scroll
       if (isPlatformBrowser(this.platformId)) {
         document.body.classList.remove('scroll-lock');
@@ -218,14 +237,18 @@ export class Navbar {
         callback();
       }
     }, 300); // Match this with CSS transition duration
+    this.showSectors.set(false);
   }
 
   /**
    * Handles navigation click - closes mobile menu with animation
    */
-  onNavigationClick(): void {
-    if (this.isMenuOpen) {
+  onNavigationClick(): void {    
+    if (this.isMenuOpen()) {
       this.closeMobileMenuWithAnimation();
     }
+  }
+  toggleSectors():void {
+    this.showSectors.update(prev => !prev);
   }
 }

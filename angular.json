@@ -34,7 +34,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/robots.txt",
+              "src/sitemap.xml"
             ],
             "styles": [
               "public/fonts/fonts.css",
@@ -56,12 +58,7 @@
           "configurations": {
             "production": {
               "inlineStyleLanguage": "css",
-              "optimization": {
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": true
-                }
-              },
+              "optimization": true,
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,

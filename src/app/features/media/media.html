@@ -107,9 +107,7 @@
   </div>
 
   <!-- Contact Form -->
-  @if(!isLoading() && media) {
-  <app-contact-form [contactUsFormImage]="media.contact_image"> </app-contact-form>
-  } @else {
-  <app-contact-us-form-skeletonloader />
-  }
+  
+  <app-contact-form [contactUsFormImage]="media?.contact_image ?? ''"> </app-contact-form>
+    
 </section>

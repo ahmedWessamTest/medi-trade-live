@@ -8,9 +8,7 @@
   <app-banner-skeleton />
   }
 
-  <!-- Contact Form -->
-  @if(!isLoading() && contactUsData) {
-  <app-contact-form [contactUsFormImage]="contactUsData?.contact_image || ''">
+  <app-contact-form [contactUsFormImage]="contactUsData?.contact_image ?? ''">
     <div
       class="contact-data py-[5px] px-7 mt-[calc(50px+11px)] border-2 border-[#00000000] rounded-[15px] shadow-md"
     >
@@ -59,7 +57,5 @@
       </ul>
     </div>
   </app-contact-form>
-  } @else {
-  <app-contact-us-form-skeletonloader />
-  }
+  
 </section>

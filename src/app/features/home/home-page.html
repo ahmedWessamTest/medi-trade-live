@@ -64,9 +64,7 @@
   <app-skeleton-loader-media [itemCount]="4" [haveTransform]="false" />
   }
   <!-- Contact Form -->
-  @if(!isLoading()) {
-  <app-contact-form [contactUsFormImage]="homeData.cotactImage" />
-  } @else {
-  <app-contact-us-form-skeletonloader />
-  }
+  
+  <app-contact-form [contactUsFormImage]="homeData?.cotactImage ?? ''" />
+ 
 </section>

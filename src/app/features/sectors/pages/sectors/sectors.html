@@ -15,9 +15,10 @@
   <app-skeleton-sector-card />
   } } @if (!isLoading()) {
 
-  <app-contact-form [contactUsFormImage]="sectorsData.contact_image"></app-contact-form>
+  <app-contact-form [contactUsFormImage]="sectorsData?.contact_image ?? ''"></app-contact-form>
   } @else {
 
   <app-contact-us-form-skeletonloader />
   }
 </section>
+<router-outlet/>

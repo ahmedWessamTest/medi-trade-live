@@ -1,0 +1,45 @@
+@if(sectorTypeSlug.images) {
+  <div class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+    <div
+      [class.ltr-carousel]="currentLang() === 'en'"
+      [class.rtl-carousel]="currentLang() === 'ar'"
+      #modalContent
+      class="bg-[#F2F2F2] rounded-[25px] md:py-12.5 md:px-17.5 py-10 px-7 relative w-[90%] max-w-206.5"
+    >
+      <figure (click)="closeModal()" class="absolute top-2.5 start-3.75 cursor-pointer">
+        <img loading="lazy" src="/images/x.webp" alt="close" class="md:w-15.75 w-8" />
+      </figure>
+  
+      <owl-carousel-o [options]="customOptions()" class="rounded-xl overflow-hidden">
+        @for(item of sectorTypeSlug?.images; track item) {
+        <ng-template carouselSlide>
+          <img
+            [src]="imagesUrl + '/' + item"
+            [alt]="sectorTypeSlug?.title"
+            class="w-full h-100 object-cover rounded-xl"
+          />
+        </ng-template>
+        }
+      </owl-carousel-o>
+      <div class="body">
+        <p class="text-center text-black text-main-sub-heading font-medium leading-9 pb-3 pt-6">
+          {{ sectorTypeSlug?.title }}
+        </p>
+        @if (sectorTypeSlug?.images?.length ?? 0 > 0) {
+  
+        <div
+          class="editor max-h-25 overflow-y-auto text-justify text-[16px]"
+          scrollHighlight
+          [innerHTML]="sectorTypeSlug?.body | customSanitize"
+        ></div>
+        } @else {
+        <div
+          class="editor min-h-auto overflow-y-auto text-justify text-[16px]"
+          scrollHighlight
+          [innerHTML]="sectorTypeSlug?.body | customSanitize"
+        ></div>
+        }
+      </div>
+    </div>
+  </div>
+}

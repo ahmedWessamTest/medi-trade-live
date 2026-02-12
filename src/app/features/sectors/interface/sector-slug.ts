@@ -23,6 +23,7 @@ export interface Type {
   main_image: string;
   images: string[];
   position: number;
+  slug:string;
 }
 
 export interface Supply {

@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, Inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,15 +11,17 @@ import { BehaviorSubject, filter } from 'rxjs';
 export class LocalizationService {
   private selectedLanguage$ = new BehaviorSubject<string>('ar');
   private isArabic$ = new BehaviorSubject<boolean>(false);
-
+  private renderer: Renderer2;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private translate: TranslateService,
     private title: Title,
-
+    @Inject(DOCUMENT) private document: Document,
+    private rendererFactory:RendererFactory2,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -28,13 +30,9 @@ export class LocalizationService {
 
         this.selectedLanguage$.next(routeLang);
         this.isArabic$.next(routeLang === 'ar');
-
-        // ✅ Check if it's in browser before using `document`
-        if (isPlatformBrowser(this.platformId)) {
-          document.documentElement.lang = routeLang;
-          document.documentElement.dir = routeLang === 'ar' ? 'rtl' : 'ltr';
-        }
-
+        const dir = routeLang === 'ar' ? 'rtl' : 'ltr'
+          this.renderer.setAttribute(this.document.documentElement,'lang',routeLang);
+          this.renderer.setAttribute(this.document.documentElement,'dir',dir);
         this.translate.use(routeLang);
 
         // ✅ Set dynamic title Routes  using data.titleKey

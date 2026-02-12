@@ -31,8 +31,8 @@ export class SEOService {
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
 
-  private readonly defaultImage = 'https://medi-trade-website.vercel.app/favicon.ico';
-  private readonly baseUrl = 'https://medi-trade-website.vercel.app';
+  private readonly defaultImage = '/favicon.ico';
+  private readonly baseUrl = 'https://meditrade-eg.com';
   // updateUniversalSEO
   /**
    * Update SEO meta tags with backend Seotag data
@@ -142,8 +142,9 @@ export class SEOService {
     }
 
     // Set image meta tags
-    const imageUrl = !this.isSeotag(seoData) && seoData.image ? seoData.image : this.defaultImage;
-
+    const imageUrl = this.baseUrl + (!this.isSeotag(seoData) && seoData.image ? seoData.image : this.defaultImage);
+    console.log(imageUrl);
+    
     this.meta.updateTag({ property: 'og:image', content: imageUrl });
     this.meta.updateTag({ property: 'twitter:image', content: imageUrl });
 

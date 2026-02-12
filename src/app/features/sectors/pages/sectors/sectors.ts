@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { SeparatedSeoTags } from '@core/services/sperated-seo-tags';
 import { SectorAltSection } from '@features/sectors/components/sector-alt-section/sector-alt-section';
@@ -13,6 +13,7 @@ import { SkeletonSectorCard } from '@shared/components/skeleton-loader/skeleton-
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ISector, ISectors } from '../../interface/sectors';
 import { SectorsService } from '../../services/sectors';
+import { RouterOutlet } from '@angular/router';
 
 export interface ICustomSectorData {
   sectors: ISector[];
@@ -30,7 +31,8 @@ export interface ICustomSectorData {
     SkeletonSectorCard,
     BannerSkeletonComponent,
     SectorAltSectionSkeletonComponent,
-  ],
+    RouterOutlet
+],
   templateUrl: './sectors.html',
   styleUrl: './sectors.css',
     changeDetection:ChangeDetectionStrategy.OnPush
@@ -40,7 +42,7 @@ export class Sectors {
   private sectorsService = inject(SectorsService);
 
   private destroy$ = new Subject<void>();
-
+  private cdr = inject(ChangeDetectorRef);
   private separatedSeoTags = inject(SeparatedSeoTags);
 
   currentLang$ = inject(LocalizationService).getLanguage();
@@ -65,6 +67,7 @@ export class Sectors {
           'sectors'
         );
         this.isLoading.set(false);
+        this.cdr.detectChanges()
       });
     });
   }

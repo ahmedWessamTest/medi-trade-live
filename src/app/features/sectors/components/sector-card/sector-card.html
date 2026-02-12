@@ -1,24 +1,24 @@
 <div class="container">
   @for(sector of sectors; track sector.id) {
   <div>
-    <div class="grid grid-cols-12 mb-[45px] gap-x-5">
+    <div class="grid grid-cols-12 mb-11.25 gap-x-5">
       <a
         class="col-span-12 md:col-span-12 lg:col-span-4 mb-4 lg:mb-0"
         [routerLink]="['/', currentLang$ | async, 'sectors', sector.slug]"
       >
-        <figure class="w-full h-[301px] lg:w-full mx-auto rounded-2xl overflow-hidden">
+        <figure class="w-full h-75.25 lg:w-full mx-auto rounded-2xl overflow-hidden">
           <img
             loading="lazy"
             class="w-full h-full object-cover"
-            [src]="sector.image_url"
-            [alt]="sector.image_alt"
+            [src]="sector?.image_url"
+            [alt]="sector?.image_alt"
           />
         </figure>
       </a>
 
       <div class="col-span-12 md:col-span-12 lg:col-span-8">
         <div class="flex flex-col justify-between">
-          <h4 class="text-[23px] font-semibold mb-[11px] leading-8">
+          <h4 class="text-[23px] font-semibold mb-2.75 leading-8">
             {{ sector.title }}
           </h4>
           <div
@@ -27,7 +27,7 @@
           ></div>
           <a
             [routerLink]="['/', currentLang$ | async, 'sectors', sector.slug]"
-            class="bg-alt-btn text-black text-center rounded-[10px] leading-main py-[9px] w-[216px]"
+            class="bg-alt-btn text-black text-center rounded-[10px] leading-main py-2.25 w-54"
           >
             {{ 'learn-more' | translate }}
           </a>

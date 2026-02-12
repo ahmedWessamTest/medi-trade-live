@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_CONFIG } from '@core/config/api-endpoints';
 import { Http } from '@core/services/api.service';
 import { Observable } from 'rxjs';
-import { ISectorSlug } from '../interface/sector-slug';
+import { ISectorSlug, Type } from '../interface/sector-slug';
 import { ISectors } from '../interface/sectors';
 
 @Injectable({
@@ -16,6 +16,11 @@ export class SectorsService extends Http {
   getSectorsBySlug(slug: string, lang?: string): Observable<ISectorSlug> {
     return this.get<ISectorSlug>(
       `${API_CONFIG.BASE_URL}/${API_CONFIG.SECTORS}/${slug}?lang=${lang}`
+    );
+  }
+  getSectorsTypeBySlug(slug: string,typeSlug:string, lang?: string): Observable<Type> {
+    return this.get<Type>(
+      `${API_CONFIG.BASE_URL}/${API_CONFIG.SECTORS}/${slug}/${typeSlug}?lang=${lang}`
     );
   }
 }

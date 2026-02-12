@@ -92,7 +92,7 @@
   }
   <!-- Contact Form -->
   @if(!isLoading()) {
-  <app-contact-form [contactUsFormImage]="blogsData.contact_image"> </app-contact-form>
+  <app-contact-form [contactUsFormImage]="blogsData?.contact_image ?? ''"> </app-contact-form>
   } @else {
   <app-contact-us-form-skeletonloader />
   }

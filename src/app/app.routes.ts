@@ -5,7 +5,7 @@ import { MainLayout } from './layouts/main-layout/main-layout';
 
 export const routes: Routes = [
   /* Root redirect to default language */
-  { path: '', redirectTo: '/ar', pathMatch: 'full' },
+  // { path: '', redirectTo: '/ar', pathMatch: 'full' },
 
   /* Main layout */
   {
@@ -17,7 +17,7 @@ export const routes: Routes = [
       /* Home */
       {
         path: '',
-        component: HomePage,
+        loadComponent: () => import('@features/home/home-page').then((m) => m.HomePage),
       },
 
       {
@@ -38,7 +38,7 @@ export const routes: Routes = [
         path: 'sectors',
         loadComponent: () =>
           import('@features/sectors/components/sector-wrapper/sector-wrapper').then(
-            (m) => m.SectorWrapper
+            (m) => m.SectorWrapper,
           ),
         children: [
           {
@@ -46,11 +46,19 @@ export const routes: Routes = [
             loadComponent: () =>
               import('@features/sectors/pages/sectors/sectors').then((m) => m.Sectors),
           },
-
           {
             path: ':slug',
             loadComponent: () =>
               import('@features/sectors/pages/sector-id/sector-id').then((m) => m.SectorId),
+            children: [
+              {
+                path: ':type-slug',
+                loadComponent: () =>
+                  import('@features/sectors/components/type-modal/type-modal').then(
+                    (m) => m.TypeModal,
+                  ),
+              },
+            ],
           },
         ],
       },
@@ -69,12 +77,7 @@ export const routes: Routes = [
         path: 'privacy-policy',
         loadComponent: () => import('@features/privacy/privacy').then((m) => m.Privacy),
       },
-
-      {
-        path: 'notfound',
-        loadComponent: () => import('@components/not-found/not-found').then((m) => m.NotFounde),
-      },
-      { path: '**', redirectTo: 'notfound' },
+      // { path: '**', redirectTo: '' },
     ],
   },
 ];

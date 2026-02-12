@@ -7,7 +7,7 @@ export const LangGuard: CanActivateFn = (route) => {
   const supportedLangs = ['en', 'ar'];
 
   if (!supportedLangs.includes(lang!)) {
-    return router.createUrlTree(['/ar/notfound']);
+    return router.createUrlTree(['/ar']);
   }
 
   return true;
