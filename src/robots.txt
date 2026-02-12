@@ -1,4 +1,3 @@
-robots txt 
 User-agent: * 
 Allow: /
 Sitemap: https://meditrade-eg.com/sitemap.xml

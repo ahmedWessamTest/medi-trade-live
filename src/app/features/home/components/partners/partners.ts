@@ -1,5 +1,13 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, Input, OnDestroy, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  Input,
+  OnDestroy,
+  signal,
+} from '@angular/core';
 import { LocalizationService } from '@core/services/localization.service';
 import { IPartnersCategory } from '@features/home/interface/home';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,9 +19,9 @@ import { Subscription } from 'rxjs';
   imports: [CarouselModule, TranslatePipe, NgOptimizedImage],
   templateUrl: './partners.html',
   styleUrl: './partners.css',
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Partners  implements OnDestroy{
+export class Partners implements OnDestroy {
   constructor() {
     this.langSubscription = this.languageService.getLanguage().subscribe((lang) => {
       this.currentLang.set(lang);
@@ -22,7 +30,7 @@ export class Partners  implements OnDestroy{
   ngOnDestroy(): void {
     this.langSubscription?.unsubscribe();
   }
-  
+
   @Input({ required: true }) partnersData: IPartnersCategory[] = [];
 
   private languageService = inject(LocalizationService);
@@ -43,8 +51,8 @@ export class Partners  implements OnDestroy{
       navSpeed: 800,
       rtl: isRtl,
       navText: [
-        '<i class="fa-solid fa-arrow-right fa-xl"></i>',
         '<i class="fa-solid fa-arrow-left fa-xl"></i>',
+        '<i class="fa-solid fa-arrow-right fa-xl"></i>',
       ],
       responsive: {
         0: {
