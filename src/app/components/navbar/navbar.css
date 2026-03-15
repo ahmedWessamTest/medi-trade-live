@@ -20,3 +20,14 @@ li.desktop-item a:hover::after,
 li.desktop-item a.active-link::after {
   width: 80%;
 }
+
+/* Mobile Menu Styles */
+.mobile-menu-container .fixed {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.scroll-lock {
+  overflow: hidden !important;
+  touch-action: none;
+}

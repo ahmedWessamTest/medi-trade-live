@@ -42,10 +42,11 @@ export class SEOService {
     seoData: Seotag,
     config: SEOConfig = { updateLinks: true, fallbackToDefault: false }
   ): void {
-    this.clearExistingMetaTags();
-
     const title = seoData.meta_title;
     const description = seoData.meta_description;
+
+    // Clear existing tags first to avoid duplicates
+    this.clearExistingMetaTags();
 
     if (title || config.fallbackToDefault) {
       this.setTitle(title || this.getDefaultTitle());
@@ -56,7 +57,9 @@ export class SEOService {
     }
 
     // Set additional meta tags with default image
-    this.setAdditionalMetaTags({ image: this.defaultImage });
+    this.setAdditionalMetaTags({
+      image: seoData.image_url || this.defaultImage,
+    });
 
     // Update SEO links if requested
     if (config.updateLinks) {
@@ -68,11 +71,12 @@ export class SEOService {
    * Update SEO meta tags with legacy SEOData (backward compatibility)
    */
   updateSEOTags(seoData: SEOData | Seotag): void {
-    this.clearExistingMetaTags();
-
     // Handle both SEOData and Seotag interfaces
     const title = this.isSeotag(seoData) ? seoData.meta_title : seoData.title;
     const description = this.isSeotag(seoData) ? seoData.meta_description : seoData.description;
+
+    // Clear existing tags first to avoid duplicates
+    this.clearExistingMetaTags();
 
     if (title) {
       this.setTitle(title);
@@ -100,17 +104,11 @@ export class SEOService {
    * Set page title
    */
   private setTitle(title: string): void {
+    // Angular Title service handles the <title> tag and hydration correctly
     this.titleService.setTitle(title);
 
-    // Ensure title is set in browser
-    if (this.isBrowser) {
-      const titleElement = this.document.querySelector('title');
-      if (titleElement) {
-        titleElement.textContent = title;
-      }
-    }
-
-    // Set social sharing titles
+    // Set meta titles for search engines and social media
+    // updateTag will either update existing or add new
     this.meta.updateTag({ name: 'title', content: title });
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'twitter:title', content: title });
@@ -131,34 +129,40 @@ export class SEOService {
   private setAdditionalMetaTags(seoData: SEOData | Seotag): void {
     const currentLang = this.translate.currentLang;
 
-    // Set keywords (Arabic only as per your current logic)
-    if (currentLang === 'ar') {
-      const keywords =
-        !this.isSeotag(seoData) && seoData.keywords
-          ? seoData.keywords
-          : ' ميدي تريد, التصدير, الاستيراد, البضائع العالمية';
+    // Set keywords
+    const keywords =
+      !this.isSeotag(seoData) && seoData.keywords
+        ? seoData.keywords
+        : ' ميدي تريد, التصدير, الاستيراد, البضائع العالمية';
 
-      this.meta.updateTag({ name: 'keywords', content: keywords });
-    }
+    this.meta.updateTag({ name: 'keywords', content: keywords });
 
     // Set image meta tags
-    const imageUrl = this.baseUrl + (!this.isSeotag(seoData) && seoData.image ? seoData.image : this.defaultImage);
-    console.log(imageUrl);
-    
+    const imagePath = !this.isSeotag(seoData) && seoData.image ? seoData.image : this.defaultImage;
+    const imageUrl = imagePath.startsWith('http') ? imagePath : `${this.baseUrl}${imagePath}`;
+
     this.meta.updateTag({ property: 'og:image', content: imageUrl });
     this.meta.updateTag({ property: 'twitter:image', content: imageUrl });
+    this.meta.updateTag({ property: 'og:image:width', content: '1200' });
+    this.meta.updateTag({ property: 'og:image:height', content: '630' });
 
     // Set additional Open Graph tags
     this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:locale', content: currentLang });
+    this.meta.updateTag({
+      property: 'og:locale:alternate',
+      content: currentLang === 'ar' ? 'en' : 'ar',
+    });
+    this.meta.updateTag({ property: 'og:site_name', content: 'meditrade Developments' });
+
     this.meta.updateTag({
       property: 'twitter:card',
       content: 'summary_large_image',
     });
 
-    // Set author if provided
-    this.meta.updateTag({ name: 'author', type: 'Organization', content: 'MediTrade' });
-
-    this.meta.updateTag({ name: 'publisher', type: 'Organization', content: 'Digital Bond' });
+    // Set author and publisher
+    this.meta.updateTag({ name: 'author', content: 'MediTrade' });
+    this.meta.updateTag({ name: 'publisher', content: 'Digital Bond' });
   }
 
   /**
@@ -182,10 +186,8 @@ export class SEOService {
   private updateCanonicalLink(url: string): void {
     if (!this.isBrowser) return;
 
-    const existingCanonical = this.document.querySelector('link[rel="canonical"]');
-    if (existingCanonical) {
-      existingCanonical.remove();
-    }
+    const existingCanonical = this.document.head.querySelectorAll('link[rel="canonical"]');
+    existingCanonical.forEach((el) => el.remove());
 
     const canonical = this.document.createElement('link');
     canonical.setAttribute('rel', 'canonical');
@@ -197,7 +199,7 @@ export class SEOService {
     if (!this.isBrowser) return;
 
     // Remove existing alternate links
-    const existingAlternates = this.document.querySelectorAll('link[rel="alternate"]');
+    const existingAlternates = this.document.head.querySelectorAll('link[rel="alternate"]');
     existingAlternates.forEach((link) => link.remove());
 
     const currentLang = this.translate.currentLang;
@@ -225,24 +227,36 @@ export class SEOService {
   }
 
   private clearExistingMetaTags(): void {
-    const tagsToRemove = [
-      "name='title'",
-      "property='og:title'",
-      "property='twitter:title'",
-      "name='description'",
-      "property='og:description'",
-      "property='twitter:description'",
-      "property='og:image'",
-      "property='twitter:image'",
-      "name='keywords'",
-      "property='og:url'",
-      "property='og:type'",
-      "property='twitter:card'",
-      "name='author'",
+    const selectors = [
+      'name="title"',
+      'property="og:title"',
+      'property="twitter:title"',
+      'name="description"',
+      'property="og:description"',
+      'property="twitter:description"',
+      'property="og:image"',
+      'property="twitter:image"',
+      'property="og:image:width"',
+      'property="og:image:height"',
+      'name="keywords"',
+      'property="og:url"',
+      'property="og:type"',
+      'property="og:locale"',
+      'property="og:locale:alternate"',
+      'property="og:site_name"',
+      'property="twitter:card"',
+      'name="author"',
+      'name="publisher"',
     ];
 
-    tagsToRemove.forEach((tag) => this.meta.removeTag(tag));
+    selectors.forEach((selector) => {
+      // Use getTags to find all matching tags and remove them all
+      // This is more thorough than removeTag(selector) which only removes one
+      const tags = this.meta.getTags(selector);
+      tags.forEach((tag) => this.meta.removeTagElement(tag));
+    });
   }
+
 
   private getDefaultTitle(): string {
     const currentLang = this.translate.currentLang;

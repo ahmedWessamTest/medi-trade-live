@@ -14,23 +14,25 @@ app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
     immutable: true,
-  })
+  }),
 );
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      {
-        if(response?.status === 302) {
-          return res.redirect(301, '/ar')
-        }
-        return response ? writeResponseToNodeResponse(response, res) : next()}
-    )
+    .then((response) => {
+      if (response?.status === 302) {
+        return res.redirect(301, '/ar');
+      }
+      return response ? writeResponseToNodeResponse(response, res) : next();
+    })
     .catch(next);
 });
 app.use((req, res) => {
   console.log(`Redirecting unknown route: ${req.url} -> /ar`);
   res.redirect(301, '/ar');
+});
+app.get('/llms.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
 });
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
   const port = Number(process.env['PORT']) || 4000;

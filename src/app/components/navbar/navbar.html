@@ -189,23 +189,19 @@
       <!-- Off-Canvas Mobile Menu Overlay -->
       <div
         class="fixed inset-0 bg-black/50 z-50 transition-opacity duration-300"
-        [class.hidden]="!isMenuOpen()"
+        [class.invisible]="!isMenuOpen()"
         [class.opacity-0]="!isMenuOpen()"
         [class.opacity-100]="isMenuOpen()"
-        (click)="toggleMobileMenu()"
+        (click)="closeMobileMenu()"
       ></div>
     
-      <!-- Mobile menu wrapper with animation -->
+      <!-- Mobile menu wrapper -->
       @if (isMenuOpen()) {
-    
-      <div class="mobile-menu-container" [class.hidden]="!isMenuOpen()">
+      <div class="mobile-menu-container">
         <div
-          class="fixed top-0 start-0 bottom-0 bg-white z-50 shadow-lg overflow-y-auto w-[80%] max-w-75 transition-transform duration-300 ease-in-out"
+          class="fixed top-0 start-0 bottom-0 bg-white z-50 shadow-lg overflow-y-auto w-[80%] max-w-75"
           [attr.dir]="isRtl ? 'rtl' : 'ltr'"
-          [class]="{
-            'translate-x-full': isRtl,
-            '-translate-x-full': !isRtl
-          }"
+          [class.translate-x-0]="true"
         >
           <div class="p-4 flex justify-between items-center border-b border-gray-200">
             <!-- Logo -->
